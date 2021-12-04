@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import addressSchema from './Address.js';
+import addressSchema from './addressModel.js';
 
 const { Schema } = mongoose;
 
