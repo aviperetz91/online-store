@@ -1,8 +1,11 @@
+import { BrowserRouter } from 'react-router-dom';
+import Routes from './navigation/Routes';
+
 const App = () => {
     return (
-        <>
-            <h1>ONLINE STORE APP</h1>
-        </>
+        <BrowserRouter>
+            <Routes />
+        </BrowserRouter>
     );
 };
 
