@@ -6,22 +6,21 @@ import translationsHE from './locales/he/translations.json';
 
 const resources = {
     en: {
-        translation: translationsEN
+        translation: translationsEN,
     },
     he: {
-        translation: translationsHE
-    }
-}
+        translation: translationsHE,
+    },
+};
 
-i18n
-    .use(initReactI18next)
+i18n.use(initReactI18next)
     .use(LanguageDetector)
     .init({
         resources,
-        lng: "en",
+        lng: 'he',
         interpolation: {
             escapeValue: false,
-        }
+        },
     });
 
 export default i18n;
