@@ -40,7 +40,7 @@ const Header = () => {
             <nav className='navbar navbar-expand-lg navbar-dark fixed-top' id='mainNav'>
                 <div className='container'>
                     <a className='navbar-brand' href='#page-top'>
-                        <img src='...' alt='...' />
+                        Online Store
                     </a>
                     <button
                         className='navbar-toggler'
@@ -117,7 +117,7 @@ const Header = () => {
                 <div className='container'>
                     <div className='masthead-subheading'>{t('welcome')}</div>
                     <div className='masthead-heading text-uppercase'>{t('nice-to-meet')}</div>
-                    <a className='btn btn-primary btn-xl text-uppercase' href='#services'>
+                    <a className='btn btn-primary btn-lg text-uppercase' href='#services'>
                         {t('go-to-shop')}
                     </a>
                 </div>
