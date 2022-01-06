@@ -5,41 +5,46 @@ const Header = () => {
     const { i18n, t } = useTranslation();
 
     useEffect(() => {
-        window.addEventListener('scroll', (event) => {
-            const navbarShrink = () => {
-                const navbarCollapsible = document.body.querySelector('#mainNav');
-                if (!navbarCollapsible) {
-                    return;
-                }
-                if (window.scrollY === 0) {
-                    navbarCollapsible.classList.remove('navbar-shrink');
-                } else {
-                    navbarCollapsible.classList.add('navbar-shrink');
-                }
-            };
-            navbarShrink();
-        });
+        listenToScrollEvent();
     });
 
-    const changeLanguage = (e) => {
-        i18n.changeLanguage(e.target.value);
+    const listenToScrollEvent = () => {
+        window.addEventListener('scroll', (event) => {
+            navbarShrink();
+        });
+    };
+
+    const navbarShrink = () => {
+        const navbarCollapsible = document.body.querySelector('#mainNav');
+        if (!navbarCollapsible) {
+            return;
+        }
+        if (window.scrollY === 0) {
+            navbarCollapsible.classList.remove('navbar-shrink');
+        } else {
+            navbarCollapsible.classList.add('navbar-shrink');
+        }
     };
 
     const getClasses = () => {
-        let classes;
+        let classes = 'navbar-nav text-uppercase py-4 py-lg-0';
         if (i18n.language === 'he') {
-            classes = 'navbar-nav text-uppercase me-auto py-4 py-lg-0';
+            classes += ' me-auto';
         } else {
-            classes = 'navbar-nav text-uppercase ms-auto py-4 py-lg-0';
+            classes += ' ms-auto';
         }
         return classes;
+    };
+
+    const changeLanguage = (e) => {
+        i18n.changeLanguage(e.target.value);
     };
 
     return (
         <>
             <nav className='navbar navbar-expand-lg navbar-dark fixed-top' id='mainNav'>
                 <div className='container'>
-                    <a className='navbar-brand' href='#page-top'>
+                    <a className='navbar-brand' href='#root'>
                         Online Store
                     </a>
                     <button
@@ -53,7 +58,7 @@ const Header = () => {
                     >
                         <div className='d-flex justify-content-center align-items-center'>
                             <span className='mx-1'>{t('menu')}</span>
-                            <span class='navbar-toggler-icon'></span>
+                            <span className='navbar-toggler-icon'></span>
                         </div>
                     </button>
                     <div className='collapse navbar-collapse' id='navbarResponsive'>
@@ -74,7 +79,7 @@ const Header = () => {
                                 </a>
                             </li>
                             <li className='nav-item'>
-                                <a class='nav-link' href='#team'>
+                                <a className='nav-link' href='#team'>
                                     {t('team')}
                                 </a>
                             </li>
@@ -83,9 +88,9 @@ const Header = () => {
                                     {t('contact')}
                                 </a>
                             </li>
-                            <li class='nav-item dropdown'>
+                            <li className='nav-item dropdown'>
                                 <a
-                                    class='nav-link'
+                                    className='nav-link'
                                     id='navbarDropdown'
                                     role='button'
                                     data-bs-toggle='dropdown'
@@ -93,14 +98,14 @@ const Header = () => {
                                 >
                                     {t('language')}
                                 </a>
-                                <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>
+                                <ul className='dropdown-menu' aria-labelledby='navbarDropdown'>
                                     <li>
-                                        <button class='dropdown-item' onClick={changeLanguage} value='he'>
+                                        <button className='dropdown-item' onClick={changeLanguage} value='he'>
                                             עברית
                                         </button>
                                     </li>
                                     <li>
-                                        <button class='dropdown-item' onClick={changeLanguage} value='en'>
+                                        <button className='dropdown-item' onClick={changeLanguage} value='en'>
                                             English
                                         </button>
                                     </li>
@@ -117,9 +122,7 @@ const Header = () => {
                 <div className='container'>
                     <div className='masthead-subheading'>{t('welcome')}</div>
                     <div className='masthead-heading text-uppercase'>{t('nice-to-meet')}</div>
-                    <a className='btn btn-primary btn-lg text-uppercase' href='#services'>
-                        {t('go-to-shop')}
-                    </a>
+                    <a className='btn btn-primary btn-lg text-uppercase'>{t('go-to-shop')}</a>
                 </div>
             </header>
         </>
