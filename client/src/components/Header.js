@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 const Header = () => {
     const { i18n, t } = useTranslation();
+    const lang = i18n.language;
 
     useEffect(() => {
         listenToScrollEvent();
@@ -26,9 +27,9 @@ const Header = () => {
         }
     };
 
-    const getClasses = () => {
+    const getNavClasses = () => {
         let classes = 'navbar-nav text-uppercase py-4 py-lg-0';
-        if (i18n.language === 'he') {
+        if (lang === 'he') {
             classes += ' me-auto';
         } else {
             classes += ' ms-auto';
@@ -62,7 +63,7 @@ const Header = () => {
                         </div>
                     </button>
                     <div className='collapse navbar-collapse' id='navbarResponsive'>
-                        <ul className={getClasses()}>
+                        <ul className={getNavClasses()}>
                             <li className='nav-item'>
                                 <a className='nav-link' href='#shop'>
                                     {t('shop')}

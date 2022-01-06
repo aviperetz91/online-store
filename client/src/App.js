@@ -2,6 +2,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Routes from './navigation/Routes';
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 const App = () => {
     const { i18n } = useTranslation();
@@ -10,6 +11,7 @@ const App = () => {
         <BrowserRouter>
             <Header />
             <Routes />
+            <Footer />
         </BrowserRouter>
     );
 };
