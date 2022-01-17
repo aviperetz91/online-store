@@ -10,5 +10,19 @@
     "nice-to-meet": "נעים מאוד להכיר אותך",
     "go-to-shop": "בוא נתחיל לקנות",
     "privacy-policy": "מדיניות פרטיות",
-    "terms-of-use": "תנאי שימוש"
+    "terms-of-use": "תנאי שימוש",
+    "contact-us": "צור קשר",
+    "feedback-from-you": "נשמח לקבל ממך משוב",
+    "your-name": "שם מלא",
+    "name-required": "שם הוא שדה חובה",
+    "your-email": "אימייל",
+    "email-required": "אימייל הוא שדה חובה",
+    "email-not-valid": "אנא הזן כתובת חוקית",
+    "your-phone": "טלפון",
+    "phone-required": "טלפון הוא שדה חובה",
+    "your-message": "נושא הפנייה",
+    "message-required": "נושא הפנייה הוא שדה חובה",
+    "form-submition": "הטופס נשלח בהצלחה!",
+    "error-sending-message": "בעיה בשליחת הטופס!",
+    "send-message": "שלח משוב"
 }

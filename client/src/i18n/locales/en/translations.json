@@ -10,5 +10,19 @@
     "nice-to-meet": "It's Nice To Meet You",
     "go-to-shop": "Lets Go Shopping",
     "privacy-policy": "Privacy Policy",
-    "terms-of-use": "Terms of Use"
+    "terms-of-use": "Terms of Use",
+    "contact-us": "Contact Us",
+    "feedback-from-you": "We will be happy to receive your feedback",
+    "your-name": "Your Name *",
+    "name-required": "A name is required",
+    "your-email": "Your Email *",
+    "email-required": "An email is required",
+    "email-not-valid": "Email is not valid",
+    "your-phone": "Your Phone *",
+    "phone-required": "A phone number is required",
+    "your-message": "Your Message *",
+    "message-required": "A message is required",
+    "form-submition": "Form submission successful!",
+    "error-sending-message": "Error sending message!",
+    "send-message": "Send Message"
 }
