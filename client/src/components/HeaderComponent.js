@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const Header = () => {
+const HeaderComponent = () => {
     const { i18n, t } = useTranslation();
     const lang = i18n.language;
 
@@ -119,15 +119,8 @@ const Header = () => {
                     </div>
                 </div>
             </nav>
-            <header className='masthead'>
-                <div className='container'>
-                    <div className='masthead-subheading'>{t('welcome')}</div>
-                    <div className='masthead-heading text-uppercase'>{t('nice-to-meet')}</div>
-                    <a className='btn btn-primary btn-xl text-uppercase'>{t('go-to-shop')}</a>
-                </div>
-            </header>
         </>
     );
 };
 
-export default Header;
+export default HeaderComponent;

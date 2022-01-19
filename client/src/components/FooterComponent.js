@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 
-const Footer = () => {
+const FooterComponent = () => {
     const { t } = useTranslation();
 
     return (
@@ -37,4 +37,4 @@ const Footer = () => {
     );
 };
 
-export default Footer;
+export default FooterComponent;

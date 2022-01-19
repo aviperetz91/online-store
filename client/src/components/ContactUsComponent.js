@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import React from 'react';
 
-const ContactUs = () => {
+const ContactUsComponent = () => {
     const { t } = useTranslation();
 
     return (
@@ -30,7 +29,11 @@ const ContactUs = () => {
                         </div>
                         <div className='col-md-6'>
                             <div className='form-group form-group-textarea mb-md-0'>
-                                <textarea className='form-control' id='message' placeholder={t('your-message')}></textarea>
+                                <textarea
+                                    className='form-control'
+                                    id='message'
+                                    placeholder={t('your-message')}
+                                ></textarea>
                                 <div className='invalid-feedback'>{t('message-required')}</div>
                             </div>
                         </div>
@@ -39,7 +42,11 @@ const ContactUs = () => {
                         <div className='text-center text-danger mb-3'>{t('error-sending-message')}</div>
                     </div>
                     <div className='text-center'>
-                        <button className='btn btn-primary btn-xl text-uppercase disabled' id='submitButton' type='submit'>
+                        <button
+                            className='btn btn-primary btn-xl text-uppercase disabled'
+                            id='submitButton'
+                            type='submit'
+                        >
                             {t('send-message')}
                         </button>
                     </div>
@@ -49,4 +56,4 @@ const ContactUs = () => {
     );
 };
 
-export default ContactUs;
+export default ContactUsComponent;
