@@ -24,5 +24,9 @@
     "message-required": "A message is required",
     "form-submition": "Form submission successful!",
     "error-sending-message": "Error sending message!",
-    "send-message": "Send Message"
+    "send-message": "Send Message",
+    "required-field": "Required field",
+    "invalid-email-address": "Ivalid email address",
+    "invalid-phone-number": "Invalid phone number",
+    "invalid-message": "The message must be at least 10 characters long"
 }

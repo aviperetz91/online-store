@@ -24,5 +24,9 @@
     "message-required": "נושא הפנייה הוא שדה חובה",
     "form-submition": "הטופס נשלח בהצלחה!",
     "error-sending-message": "בעיה בשליחת הטופס!",
-    "send-message": "שלח משוב"
+    "send-message": "שלח משוב",
+    "required-field": "שדה חובה",
+    "invalid-email-address": "כתובת אימייל לא חוקית",
+    "invalid-phone-number": "מספר טלפון לא חוקי",
+    "invalid-message": "ההודעה חייבת להכיל לפחות 10 תווים"
 }

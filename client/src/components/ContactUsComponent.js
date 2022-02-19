@@ -1,7 +1,61 @@
 import { useTranslation } from 'react-i18next';
+import { Field, reduxForm } from 'redux-form';
+import validator from 'validator';
 
-const ContactUsComponent = () => {
+const submitHandler = async (values) => {
+    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    return sleep(1000).then(() => {
+        window.alert(`Your data:\n\n${JSON.stringify(values, null, 2)}`);
+    });
+};
+
+const validate = (values) => {
+    const { name, email, phone, message } = values;
+    const errors = {};
+    if (!name) {
+        errors.name = 'required-field';
+    }
+    if (!email) {
+        errors.email = 'required-field';
+    } else if (!validator.isEmail(email)) {
+        errors.email = 'invalid-email-address';
+    }
+    if (!phone) {
+        errors.phone = 'required-field';
+    } else if (!validator.isMobilePhone(phone)) {
+        errors.phone = 'invalid-phone-number';
+    }
+    if (!message) {
+        errors.message = 'required-field';
+    } else if (message.length < 10) {
+        errors.message = 'invalid-message';
+    }
+    return errors;
+};
+
+const Input = ({ input, placeholder, type, meta: { touched, error } }) => {
     const { t } = useTranslation();
+    return (
+        <div className='form-group mb-md-0'>
+            <input {...input} className='form-control' placeholder={placeholder} type={type} />
+            {touched && error && <div className='invalid-input'>{t(error)}</div>}
+        </div>
+    );
+};
+
+const TextArea = ({ input, placeholder, meta: { touched, error } }) => {
+    const { t } = useTranslation();
+    return (
+        <div className='form-group form-group-textarea mb-md-0'>
+            <textarea {...input} className='form-control' placeholder={placeholder}></textarea>
+            {touched && error && <div className='invalid-input'>{t(error)}</div>}
+        </div>
+    );
+};
+
+const ContactUsComponent = (props) => {
+    const { t } = useTranslation();
+    const { handleSubmit, submitting } = props;
 
     return (
         <section className='page-section' id='contact'>
@@ -10,32 +64,15 @@ const ContactUsComponent = () => {
                     <h2 className='section-heading text-uppercase'>{t('contact-us')}</h2>
                     <h3 className='section-subheading text-muted'>{t('feedback-from-you')}</h3>
                 </div>
-                <form id='contactForm' data-sb-form-api-token='API_TOKEN'>
+                <form id='contactForm' onSubmit={handleSubmit(submitHandler)}>
                     <div className='row align-items-stretch mb-5'>
                         <div className='col-md-6'>
-                            <div className='form-group'>
-                                <input className='form-control' id='name' type='text' placeholder={t('your-name')} />
-                                <div className='invalid-feedback'>{t('name-required')}</div>
-                            </div>
-                            <div className='form-group'>
-                                <input className='form-control' id='email' type='email' placeholder={t('your-email')} />
-                                <div className='invalid-feedback'>{t('email-required')}</div>
-                                <div className='invalid-feedback'>{t('email-not-valid')}</div>
-                            </div>
-                            <div className='form-group mb-md-0'>
-                                <input className='form-control' id='phone' type='tel' placeholder={t('your-phone')} />
-                                <div className='invalid-feedback'>{t('phone-required')}</div>
-                            </div>
+                            <Field name='name' type='text' component={Input} placeholder={t('your-name')} />;
+                            <Field name='email' type='email' component={Input} placeholder={t('your-email')} />;
+                            <Field name='phone' type='tel' component={Input} placeholder={t('your-phone')} />
                         </div>
                         <div className='col-md-6'>
-                            <div className='form-group form-group-textarea mb-md-0'>
-                                <textarea
-                                    className='form-control'
-                                    id='message'
-                                    placeholder={t('your-message')}
-                                ></textarea>
-                                <div className='invalid-feedback'>{t('message-required')}</div>
-                            </div>
+                            <Field name='message' component={TextArea} placeholder={t('your-message')} />;
                         </div>
                     </div>
                     <div className='d-none' id='submitErrorMessage'>
@@ -43,9 +80,10 @@ const ContactUsComponent = () => {
                     </div>
                     <div className='text-center'>
                         <button
-                            className='btn btn-primary btn-xl text-uppercase disabled'
+                            className='btn btn-primary btn-xl text-uppercase'
                             id='submitButton'
                             type='submit'
+                            disabled={submitting}
                         >
                             {t('send-message')}
                         </button>
@@ -56,4 +94,7 @@ const ContactUsComponent = () => {
     );
 };
 
-export default ContactUsComponent;
+export default reduxForm({
+    form: 'contactForm',
+    validate,
+})(ContactUsComponent);
