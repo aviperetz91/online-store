@@ -70,6 +70,11 @@ const HeaderComponent = () => {
                                 </a>
                             </li>
                             <li className='nav-item'>
+                                <a className='nav-link' href='#services'>
+                                    {t('services')}
+                                </a>
+                            </li>
+                            <li className='nav-item'>
                                 <a className='nav-link' href='#about'>
                                     {t('about')}
                                 </a>

@@ -5,6 +5,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles.css';
+import './custom.css';
 import './i18n/config';
 import App from './App';
 import { Provider } from 'react-redux';

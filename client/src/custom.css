@@ -1,0 +1,21 @@
+.invalid-input {
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 0.875em;
+    color: #dc3545;
+}
+
+.service-item-circle {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.service-item-icon {
+    font-size: 70px;
+    color: white;
+}

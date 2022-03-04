@@ -1,4 +1,5 @@
 {   
+    "services": "שירותים",
     "shop": "חנות",
     "about": "אודות",
     "gallery": "גלריה",
@@ -28,5 +29,13 @@
     "required-field": "שדה חובה",
     "invalid-email-address": "כתובת אימייל לא חוקית",
     "invalid-phone-number": "מספר טלפון לא חוקי",
-    "invalid-message": "ההודעה חייבת להכיל לפחות 10 תווים"
+    "invalid-message": "ההודעה חייבת להכיל לפחות 10 תווים",
+    "services-title": "השירותים שלנו",
+    "services-subtitle": "דואגים לכם מההתחלה ועד הסוף",
+    "e-commerce": "חנות דיגיטלית",
+    "e-commerce-text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.",
+    "deliveries": "שירות משלוחים",
+    "deliveries-text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.",
+    "customer-service": "שירות לקוחות",
+    "customer-service-text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit."
 }

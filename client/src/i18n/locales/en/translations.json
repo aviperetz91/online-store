@@ -1,4 +1,5 @@
 {   
+    "services": "Services",
     "shop": "Shop",
     "about": "About",
     "gallery": "Gallery",
@@ -28,5 +29,13 @@
     "required-field": "Required field",
     "invalid-email-address": "Ivalid email address",
     "invalid-phone-number": "Invalid phone number",
-    "invalid-message": "The message must be at least 10 characters long"
+    "invalid-message": "The message must be at least 10 characters long",
+    "services-title": "Services",
+    "services-subtitle": "Lorem ipsum dolor sit amet consectetur",
+    "e-commerce": "E-Commerce",
+    "e-commerce-text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.",
+    "deliveries": "Delivery",
+    "deliveries-text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.",
+    "customer-service": "Customer Service",
+    "customer-service-text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit."
 }
