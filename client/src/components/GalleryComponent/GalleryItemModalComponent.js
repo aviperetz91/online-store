@@ -5,7 +5,7 @@ const GalleryItemModalComponent = ({ id, name, summary, description, image }) =>
     const { t } = useTranslation();
 
     return (
-        <div className='portfolio-modal modal fade' id={id} tabindex='-1' role='dialog' aria-hidden='true'>
+        <div className='portfolio-modal modal fade' id={id} tabIndex='-1' role='dialog' aria-hidden='true'>
             <div className='modal-dialog'>
                 <div className='modal-content'>
                     <div className='close-modal' data-bs-dismiss='modal'>
