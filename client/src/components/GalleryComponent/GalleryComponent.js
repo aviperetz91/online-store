@@ -10,14 +10,16 @@ const GalleryComponent = () => {
         return galleryItems.map((item) => (
             <>
                 <GalleryItemComponent
+                    id={item.id}
                     name={item.name}
-                    brief={item.brief}
+                    summary={item.summary}
                     description={item.description}
                     image={item.image}
                 />
                 <GalleryItemModalComponent
+                    id={item.id}
                     name={item.name}
-                    brief={item.brief}
+                    summary={item.summary}
                     description={item.description}
                     image={item.image}
                 />

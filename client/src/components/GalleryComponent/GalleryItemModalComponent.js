@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import closeIcon from '../../assets/img/close-icon.svg';
 
-const GalleryItemModalComponent = ({ name, brief, description, image }) => {
+const GalleryItemModalComponent = ({ id, name, summary, description, image }) => {
     const { t } = useTranslation();
 
     return (
-        <div className='portfolio-modal modal fade' id={name} tabindex='-1' role='dialog' aria-hidden='true'>
+        <div className='portfolio-modal modal fade' id={id} tabindex='-1' role='dialog' aria-hidden='true'>
             <div className='modal-dialog'>
                 <div className='modal-content'>
                     <div className='close-modal' data-bs-dismiss='modal'>
@@ -16,7 +16,7 @@ const GalleryItemModalComponent = ({ name, brief, description, image }) => {
                             <div className='col-lg-8'>
                                 <div className='modal-body'>
                                     <h2 className='text-uppercase'>{name}</h2>
-                                    <p className='item-intro text-muted'>{brief}</p>
+                                    <p className='item-intro text-muted'>{summary}</p>
                                     <img className='img-fluid d-block mx-auto' src={image} alt='...' />
                                     <p>{description}</p>
                                     <button
