@@ -3,5 +3,5 @@ export const PATHS = {
 };
 
 export const FORMS_NAMES = {
-    CONTACT: 'contact',
+    CONTACT_FORM: 'contactForm',
 };

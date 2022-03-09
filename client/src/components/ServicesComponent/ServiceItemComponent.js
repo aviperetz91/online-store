@@ -1,4 +1,4 @@
-const ServiceItem = ({ icon, name, description }) => {
+const ServiceItemComponent = ({ icon, name, description }) => {
     return (
         <div className='col-md-4'>
             <div className='service-item-circle bg-primary'>
@@ -10,4 +10,4 @@ const ServiceItem = ({ icon, name, description }) => {
     );
 };
 
-export default ServiceItem;
+export default ServiceItemComponent;

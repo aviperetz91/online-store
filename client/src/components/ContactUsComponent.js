@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Field, reduxForm } from 'redux-form';
+import { FORMS_NAMES } from '../config/consts';
 import validator from 'validator';
 
 const submitHandler = async (values) => {
@@ -95,6 +96,6 @@ const ContactUsComponent = (props) => {
 };
 
 export default reduxForm({
-    form: 'contactForm',
+    form: FORMS_NAMES.CONTACT_FORM,
     validate,
 })(ContactUsComponent);

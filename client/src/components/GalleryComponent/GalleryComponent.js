@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import galleryItems from '../../constants/galleryItemsConstants';
+import galleryItems from './galleryItemsMock';
 import GalleryItemComponent from './GalleryItemComponent';
 import GalleryItemModalComponent from './GalleryItemModalComponent';
 

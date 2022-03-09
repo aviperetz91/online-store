@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { PATHS } from '../constants/stringConstants';
+import { PATHS } from '../config/consts';
 import HomeScreen from '../screens/HomeScreen';
 
 const RouterComponent = () => (

@@ -1,13 +1,18 @@
 import { useTranslation } from 'react-i18next';
-import services from '../../constants/servicesConstants';
-import ServiceItem from './ServiceItem';
+import services from './servicesMock';
+import ServiceItemComponent from './ServiceItemComponent';
 
 const ServicesComponent = () => {
     const { t } = useTranslation();
 
     const renderServices = () => {
         return services.map((service) => (
-            <ServiceItem key={service.id} icon={service.icon} name={service.name} description={service.description} />
+            <ServiceItemComponent
+                key={service.id}
+                icon={service.icon}
+                name={service.name}
+                description={service.description}
+            />
         ));
     };
 
