@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 const HeaderComponent = () => {
     const { i18n, t } = useTranslation();
@@ -65,9 +66,9 @@ const HeaderComponent = () => {
                     <div className='collapse navbar-collapse' id='navbarResponsive'>
                         <ul className={getNavClasses()}>
                             <li className='nav-item'>
-                                <a className='nav-link' href='#shop'>
+                                <Link className='nav-link' to='/shop'>
                                     {t('shop')}
-                                </a>
+                                </Link>
                             </li>
                             <li className='nav-item'>
                                 <a className='nav-link' href='#services'>

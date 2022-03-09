@@ -1,5 +1,6 @@
 export const PATHS = {
-    HOME_PATH: '/',
+    HOME_SCREEN_PATH: '/',
+    SHOP_SCREEN_PATH: '/shop',
 };
 
 export const FORMS_NAMES = {
