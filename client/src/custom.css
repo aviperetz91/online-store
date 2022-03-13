@@ -1,9 +1,19 @@
+a {
+    text-decoration: none;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
 .invalid-input {
     width: 100%;
     margin-top: 0.25rem;
     font-size: 0.875em;
     color: #dc3545;
 }
+
+/* Services Styles */
 
 .service-item-circle {
     border-radius: 50%;
@@ -20,6 +30,192 @@
     color: white;
 }
 
-.pointer {
+/* Card Styles */
+
+.card {
+    border: 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card-image img {
+    max-height: 100%;
+    max-width: 100%;
+    border-radius: 8px 8px 0px 0;
+}
+
+.card-action {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: right;
+    width: 45px;
+    height: 45px;
+    margin-top: -25px;
+    margin-right: 15px;
+    z-index: 2;
+    color: #fff;
+    background: #dc3545;
+    border-radius: 100%;
+    padding: 15px;
+    font-size: 15px;
+    box-shadow: 0 1px 3px 2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card-action-rtl {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: left;
+    width: 45px;
+    height: 45px;
+    margin-top: -25px;
+    margin-left: 15px;
+    z-index: 2;
+    color: #fff;
+    background: #dc3545;
+    border-radius: 100%;
+    padding: 15px;
+    font-size: 15px;
+    box-shadow: 0 1px 3px 2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card-action:hover {
+    color: #fff;
+    background: #be1727;
+    -webkit-animation: pulse 1.5s infinite;
+}
+
+.card-action-rtl:hover {
+    color: #fff;
+    background: #be1727;
+    -webkit-animation: pulse 1.5s infinite;
+}
+
+.card-heading {
+    font-size: 14px;
+    font-weight: bold;
+    background: #fff;
+    padding: 15px 15px 10px 15px;
+}
+
+.card-text {
+    padding: 10px 15px;
+    font-weight: 600;
+    background: #fff;
+    font-size: 14px;
+    color: #636262;
+}
+
+.card-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
     cursor: pointer;
+    padding: 8px 0;
+    width: 100%;
+    background-color: #ffc800;
+    color: #343a40;
+    border-radius: 0 0 8px 8px;
+}
+
+.card-button:hover {
+    text-decoration: none;
+    background-color: #d9aa00;
+    color: #343a40;
+}
+
+@-webkit-keyframes pulse {
+    0% {
+        -moz-transform: scale(0.9);
+        -ms-transform: scale(0.9);
+        -webkit-transform: scale(0.9);
+        transform: scale(0.9);
+    }
+
+    70% {
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        box-shadow: 0 0 0 50px rgba(90, 153, 212, 0);
+    }
+
+    100% {
+        -moz-transform: scale(0.9);
+        -ms-transform: scale(0.9);
+        -webkit-transform: scale(0.9);
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(90, 153, 212, 0);
+    }
+}
+
+.product-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: 150px; */
+    height: 140px;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+    .product-img {
+        /* width: 180px; */
+        height: 160px;
+    }
+    .card-heading {
+        font-size: 15px;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .product-img {
+        /* width: 210px; */
+        height: 180px;
+    }
+    .card-heading,
+    .card-button {
+        font-size: 15px;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .product-img {
+        /* width: 240px; */
+        height: 200px;
+    }
+    .card-heading,
+    .card-button {
+        font-size: 16px;
+    }
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .product-img {
+        /* width: 270px; */
+        height: 220px;
+    }
+    .card-heading,
+    .card-button {
+        font-size: 17px;
+    }
+}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+    .product-img {
+        /* width: 300; */
+        height: 220;
+    }
+    .card-heading,
+    .card-button {
+        font-size: 18px;
+    }
 }
