@@ -16,9 +16,7 @@ const ProductComponent = ({ product }) => {
                 </div>
                 <div className='card-text'>{`$${price}`}</div>
                 <div className='card-button'>
-                    <div className='mx-1 mb-1'>
-                        <FaShoppingCart />
-                    </div>
+                    <FaShoppingCart className='mx-1' />
                     {`${t('purchase')}`}
                 </div>
             </div>

@@ -1,4 +1,5 @@
 {   
+    "home": "Home",
     "services": "Services",
     "shop": "Shop",
     "about": "About",
@@ -34,5 +35,6 @@
     "services-subtitle": "Lorem ipsum dolor sit amet consectetur",
     "gallery-subtitle": "Lorem ipsum dolor sit amet consectetur",
     "close": "Close",
-    "purchase": "Purchase"
+    "purchase": "Purchase",
+    "cart": "Cart"
 }
