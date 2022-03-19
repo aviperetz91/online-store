@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { PATHS } from '../config/consts';
 
 const MastheadComponent = () => {
     const { t } = useTranslation();
@@ -8,7 +10,9 @@ const MastheadComponent = () => {
             <div className='container'>
                 <div className='masthead-subheading'>{t('welcome')}</div>
                 <div className='masthead-heading text-uppercase'>{t('nice-to-meet')}</div>
-                <a className='btn btn-primary btn-xl text-uppercase'>{t('go-to-shop')}</a>
+                <Link className='btn btn-primary btn-xl text-uppercase' to={PATHS.SHOP_SCREEN_PATH}>
+                    {t('go-to-shop')}
+                </Link>
             </div>
         </header>
     );

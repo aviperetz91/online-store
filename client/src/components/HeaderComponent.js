@@ -41,7 +41,7 @@ const HeaderComponent = () => {
     };
 
     const getUlClasses = (reverse) => {
-        let classes = 'navbar-nav text-uppercase py-4 py-lg-0 ';
+        let classes = 'navbar-nav text-uppercase py-4 py-lg-0 px-0 ';
         if (reverse) {
             if (lang === 'he') {
                 classes += 'ms-auto';
@@ -58,20 +58,35 @@ const HeaderComponent = () => {
         return classes;
     };
 
+    const getBrandClasses = () => {
+        let classes = 'navbar-brand pointer ';
+        if (isHomeScreen) {
+            classes += 'mx-0';
+        } else {
+            if (lang === 'he') {
+                classes += 'me-0 ms-3';
+            }
+        }
+        return classes;
+    };
+
     const changeLanguage = (e) => {
         i18n.changeLanguage(e.target.value);
     };
 
-    const scrollToTop = () => {
-        window.scrollTo(0, 0);
+    const insidePageNavigation = (section) => {
+        const element = document.querySelector(section);
+        if (element) {
+            element.scrollIntoView();
+        }
     };
 
     return (
         <nav className={getNavClasses()} id='mainNav'>
             <div className='container'>
-                <a className='navbar-brand' href='#root'>
+                <div className={getBrandClasses()} onClick={() => insidePageNavigation('#root')}>
                     Online Store
-                </a>
+                </div>
                 <button
                     className='navbar-toggler'
                     type='button'
@@ -90,45 +105,38 @@ const HeaderComponent = () => {
                     {isHomeScreen ? (
                         <ul className={getUlClasses()}>
                             <li className='nav-item'>
-                                <Link className='nav-link' to='/shop' onClick={scrollToTop}>
-                                    {t('shop')}
-                                </Link>
-                            </li>
-                            <li className='nav-item'>
-                                <a className='nav-link' href='#services'>
+                                <div className='nav-link pointer' onClick={() => insidePageNavigation('#services')}>
                                     {t('services')}
-                                </a>
+                                </div>
                             </li>
                             <li className='nav-item'>
-                                <a className='nav-link' href='#about'>
+                                <div className='nav-link pointer' onClick={() => insidePageNavigation('#about')}>
                                     {t('about')}
-                                </a>
+                                </div>
                             </li>
                             <li className='nav-item'>
-                                <a className='nav-link' href='#gallery'>
+                                <div className='nav-link pointer' onClick={() => insidePageNavigation('#gallery')}>
                                     {t('gallery')}
-                                </a>
+                                </div>
                             </li>
                             <li className='nav-item'>
-                                <a className='nav-link' href='#team'>
-                                    {t('team')}
-                                </a>
+                                <div className='nav-link pointer'>{t('team')}</div>
                             </li>
                             <li className='nav-item'>
-                                <a className='nav-link' href='#contact'>
+                                <div className='nav-link pointer' onClick={() => insidePageNavigation('#contact')}>
                                     {t('contact')}
-                                </a>
+                                </div>
                             </li>
                             <li className='nav-item dropdown'>
-                                <a
-                                    className='nav-link'
+                                <div
+                                    className='nav-link pointer'
                                     id='navbarDropdown'
                                     role='button'
                                     data-bs-toggle='dropdown'
                                     aria-expanded='false'
                                 >
                                     {t('language')}
-                                </a>
+                                </div>
                                 <ul className='dropdown-menu' aria-labelledby='navbarDropdown'>
                                     <li>
                                         <button className='dropdown-item' onClick={changeLanguage} value='he'>
@@ -143,22 +151,26 @@ const HeaderComponent = () => {
                                 </ul>
                             </li>
                             <li className=''>
-                                <a className=''></a>
+                                <div className=''></div>
                             </li>
                         </ul>
                     ) : (
                         <>
                             <ul className={getUlClasses('reverse')}>
                                 <li className='nav-item'>
-                                    <Link className='nav-link' to='/' onClick={scrollToTop}>
+                                    <Link
+                                        className='nav-link pointer'
+                                        to='/'
+                                        onClick={() => insidePageNavigation('#root')}
+                                    >
                                         {t('home')}
                                     </Link>
                                 </li>
                             </ul>
-                            <button class='btn btn-outline-light'>
+                            <button className='btn btn-outline-light'>
                                 <FaShoppingCart className='mx-1' />
                                 {t('cart')}
-                                <span class='badge bg-light text-dark mx-1 rounded-pill'>0</span>
+                                <span className='badge bg-light text-dark mx-1 rounded-pill'>0</span>
                             </button>
                         </>
                     )}
