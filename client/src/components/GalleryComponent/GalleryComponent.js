@@ -1,29 +1,20 @@
 import { useTranslation } from 'react-i18next';
 import galleryItems from './galleryItemsMock';
 import GalleryItemComponent from './GalleryItemComponent';
-import GalleryItemModalComponent from './GalleryItemModalComponent';
 
 const GalleryComponent = () => {
     const { t } = useTranslation();
 
     const renderGalleryItems = () => {
         return galleryItems.map((item) => (
-            <>
-                <GalleryItemComponent
-                    id={item.id}
-                    name={item.name}
-                    summary={item.summary}
-                    description={item.description}
-                    image={item.image}
-                />
-                <GalleryItemModalComponent
-                    id={item.id}
-                    name={item.name}
-                    summary={item.summary}
-                    description={item.description}
-                    image={item.image}
-                />
-            </>
+            <GalleryItemComponent
+                key={item.id}
+                id={item.id}
+                name={item.name}
+                summary={item.summary}
+                description={item.description}
+                image={item.image}
+            />
         ));
     };
 

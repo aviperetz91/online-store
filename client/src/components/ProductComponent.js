@@ -6,13 +6,13 @@ const ProductComponent = ({ product }) => {
     const { image, title, price } = product;
 
     return (
-        <div class='col-6 col-md-5 col-lg-4 col-xl-3 mb-4'>
-            <div class='card h-100'>
+        <div className='col-6 col-md-5 col-lg-4 col-xl-3 mb-4'>
+            <div className='card h-100'>
                 <div className='card-image product-img'>
-                    <img src={image} />
+                    <img src={image} alt='product' />
                 </div>
-                <div class='card-body p-0'>
-                    <div class='card-heading'>{title}</div>
+                <div className='card-body p-0'>
+                    <div className='card-heading'>{title}</div>
                 </div>
                 <div className='card-text'>{`$${price}`}</div>
                 <div className='card-button'>
