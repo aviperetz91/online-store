@@ -1,6 +1,6 @@
 import DBConnection from '../config/database.js';
 import axios from 'axios';
-import User from '../models/User.js';
+import User from '../models/userModel.js';
 
 await DBConnection();
 

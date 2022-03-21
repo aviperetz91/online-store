@@ -1,6 +1,6 @@
 import DBConnection from '../config/database.js';
 import axios from 'axios';
-import Category from '../models/Category.js';
+import Category from '../models/categoryModel.js';
 
 await DBConnection();
 

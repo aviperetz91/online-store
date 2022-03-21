@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import DBConnection from '../config/database.js';
 import axios from 'axios';
-import Product from '../models/Product.js';
+import Product from '../models/productModel.js';
 
 await DBConnection();
 
@@ -33,7 +33,7 @@ const insertProducts = async () => {
                 description: product.description,
                 price: product.price,
                 reviews: [],
-                rating: 0,
+                rating: Math.floor(Math.random() * 5) + 1,
                 quantity: 100,
                 sold: 10,
             };
