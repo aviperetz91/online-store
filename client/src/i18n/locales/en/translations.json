@@ -36,5 +36,6 @@
     "gallery-subtitle": "Lorem ipsum dolor sit amet consectetur",
     "close": "Close",
     "purchase": "Purchase",
-    "cart": "Cart"
+    "cart": "Cart",
+    "no-results": "No results matched your search"
 }
