@@ -34,8 +34,8 @@ const insertProducts = async () => {
                 price: product.price,
                 reviews: [],
                 rating: Math.floor(Math.random() * 5) + 1,
-                quantity: 100,
-                sold: 10,
+                quantity: Math.floor(Math.random() * 100) + 1,
+                sold: Math.floor(Math.random() * 50) + 1,
             };
             productsToDB.push(newProduct);
         }
