@@ -1,3 +1,13 @@
 export const GET_PRODUCT_LIST = 'GET_PRODUCT_LIST';
 export const GET_PRODUCT_LIST_SUCCESS = 'GET_PRODUCT_LIST_SUCCESS';
 export const GET_PRODUCT_LIST_FAIL = 'GET_PRODUCT_LIST_FAIL';
+export const BY_RATING = 'rating';
+export const BY_SELL = 'sold';
+export const BY_ARRAIVAL = 'createdAt';
+export const ASC = 'asc';
+export const DESC = 'desc';
+export const LIMIT = 4;
+export const PRODUCTS_BY_RATING_KEY = 'productsByRating';
+export const PRODUCTS_BY_SELL_KEY = 'productsBySell';
+export const PRODUCTS_BY_ARRAIVAL_KEY = 'productsByArraival';
+export const PRODUCTS_KEY = 'products';

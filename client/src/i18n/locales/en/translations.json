@@ -37,5 +37,9 @@
     "close": "Close",
     "purchase": "Purchase",
     "cart": "Cart",
-    "no-results": "No results matched your search"
+    "no-results": "No results matched your search",
+    "highest-rated": "Highest Rated",
+    "most-popular": "Most Popular",
+    "latest-products": "Latest Products",
+    "search-product": "search product"
 }
