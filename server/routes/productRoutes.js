@@ -4,7 +4,7 @@ import { getProducts, getProductById } from '../controllers/productController.js
 const router = express.Router();
 
 // @route   GET api/products
-// @desc    Get all products
+// @desc    Get products
 // @access  Public
 router.get('/', getProducts);
 
