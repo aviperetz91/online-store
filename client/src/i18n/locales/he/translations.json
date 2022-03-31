@@ -43,5 +43,9 @@
     "latest-products": "החדשים ביותר",
     "search-product": "הזן מוצר לחיפוש",
     "filter-by-category": "קטגוריות",
-    "all-categories": "כל הקטגוריות"
+    "all-categories": "כל הקטגוריות",
+    "sorting-options": "אפשרויות מיון",
+    "by-rating": "לפי דירוג",
+    "by-sell": "לפי מכירות",
+    "by-arraival": "מהחדש לישן"
 }

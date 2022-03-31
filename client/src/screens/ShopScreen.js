@@ -2,25 +2,41 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { getProducts, getCategories } from '../store/actions/productActions';
-import { BY_RATING, BY_SELL, BY_ARRAIVAL, DESC, LIMIT } from '../store/constants/productsConstants';
+import { BY_RATING, BY_SELL, BY_ARRAIVAL, DESC_ORDER, ALL_CATEGORIES } from '../store/constants/productsConstants';
 import SpinnerComponent from '../components/SpinnerComponent';
 import ProductComponent from '../components/ProductComponent';
-import RadioComponent from '../components/RadioComponent';
+import SelectComponent from '../components/SelectComponent';
 
 const ShopScreen = () => {
+    const { t } = useTranslation();
     const dispatch = useDispatch();
-    const { products, productsByRating, productsBySell, productsByArraival, categories, loadingProducts } = useSelector(
-        (state) => state.product
-    );
+    const { products, categories, loadingProducts } = useSelector((state) => state.product);
     const [searchInput, setSearchInput] = useState('');
     const [searchResults, setSearchResults] = useState();
     const [selectedCategoryId, setSelectedCategoryId] = useState();
-    const { t } = useTranslation();
+    const [selectedSortOption, setSelectedSortOption] = useState();
+    const sortingOptions = [
+        {
+            id: BY_RATING,
+            title: t('by-rating'),
+            checked: selectedSortOption === BY_RATING,
+            handleSelect: () => handleSortOptionSelect(BY_RATING),
+        },
+        {
+            id: BY_SELL,
+            title: t('by-sell'),
+            checked: selectedSortOption === BY_SELL,
+            handleSelect: () => handleSortOptionSelect(BY_SELL),
+        },
+        {
+            id: BY_ARRAIVAL,
+            title: t('by-arraival'),
+            checked: selectedSortOption === BY_ARRAIVAL,
+            handleSelect: () => handleSortOptionSelect(BY_ARRAIVAL),
+        },
+    ];
 
     useEffect(() => {
-        dispatch(getProducts(null, BY_RATING, DESC, LIMIT));
-        dispatch(getProducts(null, BY_SELL, DESC, LIMIT));
-        dispatch(getProducts(null, BY_ARRAIVAL, DESC, LIMIT));
         dispatch(getProducts());
         dispatch(getCategories());
     }, [dispatch]);
@@ -30,25 +46,8 @@ const ShopScreen = () => {
             return searchResults.map((product) => <ProductComponent key={product._id} product={product} />);
         } else if (searchResults && searchResults.length === 0) {
             return <h4 className='mt-2'>{t('no-results')}</h4>;
-        } else if (selectedCategoryId) {
-            return products.map((product) => <ProductComponent key={product._id} product={product} />);
         } else {
-            return (
-                <>
-                    <h3 className='mb-5'>{t('highest-rated')}</h3>
-                    {productsByRating &&
-                        productsByRating.length > 0 &&
-                        productsByRating.map((product) => <ProductComponent key={product._id} product={product} />)}
-                    <h3 className='my-5'>{t('most-popular')}</h3>
-                    {productsBySell &&
-                        productsBySell.length > 0 &&
-                        productsBySell.map((product) => <ProductComponent key={product._id} product={product} />)}
-                    <h3 className='my-5'>{t('latest-products')}</h3>
-                    {productsByArraival &&
-                        productsByArraival.length > 0 &&
-                        productsByArraival.map((product) => <ProductComponent key={product._id} product={product} />)}
-                </>
-            );
+            return products.map((product) => <ProductComponent key={product._id} product={product} />);
         }
     };
 
@@ -59,17 +58,19 @@ const ShopScreen = () => {
     };
 
     const renderCategories = () => (
-        <div className='mb-5'>
-            <RadioComponent
-                id='*'
+        <div className='mb-4'>
+            <SelectComponent
+                id={ALL_CATEGORIES}
                 title={t('all-categories')}
-                checked={selectedCategoryId === '*'}
-                handleSelect={() => handleCategorySelect('*')}
+                type='radio'
+                checked={!selectedCategoryId}
+                handleSelect={() => handleCategorySelect(null)}
             />
             {categories.map((category) => (
-                <RadioComponent
+                <SelectComponent
                     key={category._id}
                     id={category._id}
+                    type='radio'
                     title={category.title}
                     checked={selectedCategoryId === category._id}
                     handleSelect={() => handleCategorySelect(category._id)}
@@ -81,19 +82,30 @@ const ShopScreen = () => {
     const handleCategorySelect = (categoryId) => {
         setSelectedCategoryId(categoryId);
         setSearchInput('');
-        if (categoryId === '*') {
-            dispatch(getProducts());
-        } else {
-            dispatch(getProducts(categoryId));
-        }
+        dispatch(getProducts(categoryId, selectedSortOption, DESC_ORDER));
     };
 
-    const requriedData =
-        products.length > 0 &&
-        productsByRating.length > 0 &&
-        productsBySell.length > 0 &&
-        productsByArraival.length > 0 &&
-        categories.length > 0;
+    const renderSortOptions = () => (
+        <div className='mb-4'>
+            {sortingOptions.map((option) => (
+                <SelectComponent
+                    key={option.id}
+                    id={option.id}
+                    type='radio'
+                    title={option.title}
+                    checked={option.checked}
+                    handleSelect={() => handleSortOptionSelect(option.id)}
+                />
+            ))}
+        </div>
+    );
+
+    const handleSortOptionSelect = (option) => {
+        setSelectedSortOption(option);
+        dispatch(getProducts(selectedCategoryId, option, DESC_ORDER));
+    };
+
+    const requriedData = products.length > 0 && categories.length > 0;
 
     if (!requriedData) {
         return <SpinnerComponent height={'82vh'} />;
@@ -103,7 +115,7 @@ const ShopScreen = () => {
                 <div className='row'>
                     <div className='col-lg-3'>
                         <div className='row px-3'>
-                            <form className='form-inline my-2 my-lg-0'>
+                            <form className='form-inline my-2 my-lg-0 px-0'>
                                 <input
                                     className='form-control form-control-lg mb-3'
                                     placeholder={t('search-product')}
@@ -112,8 +124,10 @@ const ShopScreen = () => {
                                 ></input>
                             </form>
                         </div>
-                        <div className='fw-bold mb-2'>{t('filter-by-category')}</div>
+                        <div className='fw-bold my-1 mx-2'>{t('filter-by-category')}</div>
                         {renderCategories()}
+                        <div className='fw-bold my-1 mx-2'>{t('sorting-options')}</div>
+                        {renderSortOptions()}
                     </div>
                     <div className='col-lg-9'>
                         <div className='row px-2'>

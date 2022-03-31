@@ -20,7 +20,7 @@ export const getProducts = (category, sortBy, order, limit) => {
             const { data } = await axios.get(
                 `${API_URL}/api/products?categoryId=${categoryId}&sortBy=${sortByValue}&order=${orderValue}&limit=${limitValue}`
             );
-            dispatch({ type: GET_PRODUCT_LIST_SUCCESS, payload: data, productsBy: sortByValue });
+            dispatch({ type: GET_PRODUCT_LIST_SUCCESS, payload: data });
         } catch (error) {
             let message = error.message;
             if (error.response && error.response.data.message) {

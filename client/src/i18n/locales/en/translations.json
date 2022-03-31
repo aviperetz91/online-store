@@ -43,5 +43,9 @@
     "latest-products": "Latest Products",
     "search-product": "search product",
     "filter-by-category": "Categories",
-    "all-categories": "All Categories"
+    "all-categories": "All Categories",
+    "sorting-options": "Sorting Options",
+    "by-rating": "By Rating",
+    "by-sell": "By Sell",
+    "by-arraival": "By Arraival"
 }
