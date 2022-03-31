@@ -1,29 +1,37 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { getProducts } from '../store/actions/productActions';
+import { getProducts, getCategories } from '../store/actions/productActions';
 import { BY_RATING, BY_SELL, BY_ARRAIVAL, DESC, LIMIT } from '../store/constants/productsConstants';
+import SpinnerComponent from '../components/SpinnerComponent';
 import ProductComponent from '../components/ProductComponent';
+import RadioComponent from '../components/RadioComponent';
 
 const ShopScreen = () => {
     const dispatch = useDispatch();
-    const { products, productsByRating, productsBySell, productsByArraival } = useSelector((state) => state.product);
+    const { products, productsByRating, productsBySell, productsByArraival, categories, loadingProducts } = useSelector(
+        (state) => state.product
+    );
     const [searchInput, setSearchInput] = useState('');
-    const [filteredProducts, setfilteredProducts] = useState();
+    const [searchResults, setSearchResults] = useState();
+    const [selectedCategoryId, setSelectedCategoryId] = useState();
     const { t } = useTranslation();
 
     useEffect(() => {
-        dispatch(getProducts(BY_RATING, DESC, LIMIT));
-        dispatch(getProducts(BY_SELL, DESC, LIMIT));
-        dispatch(getProducts(BY_ARRAIVAL, DESC, LIMIT));
+        dispatch(getProducts(null, BY_RATING, DESC, LIMIT));
+        dispatch(getProducts(null, BY_SELL, DESC, LIMIT));
+        dispatch(getProducts(null, BY_ARRAIVAL, DESC, LIMIT));
         dispatch(getProducts());
+        dispatch(getCategories());
     }, [dispatch]);
 
     const renderProducts = () => {
-        if (searchInput !== '' && filteredProducts && filteredProducts.length > 0) {
-            return filteredProducts.map((product) => <ProductComponent key={product._id} product={product} />);
-        } else if (filteredProducts && filteredProducts.length === 0) {
+        if (searchInput !== '' && searchResults && searchResults.length > 0) {
+            return searchResults.map((product) => <ProductComponent key={product._id} product={product} />);
+        } else if (searchResults && searchResults.length === 0) {
             return <h4 className='mt-2'>{t('no-results')}</h4>;
+        } else if (selectedCategoryId) {
+            return products.map((product) => <ProductComponent key={product._id} product={product} />);
         } else {
             return (
                 <>
@@ -46,11 +54,50 @@ const ShopScreen = () => {
 
     const handleSearch = (searchInput) => {
         setSearchInput(searchInput);
-        const filtered = [...products].filter((product) => product.title.toLowerCase().includes(searchInput));
-        setfilteredProducts(filtered);
+        const results = [...products].filter((product) => product.title.toLowerCase().includes(searchInput));
+        setSearchResults(results);
     };
 
-    if (products && products.length > 0) {
+    const renderCategories = () => (
+        <div className='mb-5'>
+            <RadioComponent
+                id='*'
+                title={t('all-categories')}
+                checked={selectedCategoryId === '*'}
+                handleSelect={() => handleCategorySelect('*')}
+            />
+            {categories.map((category) => (
+                <RadioComponent
+                    key={category._id}
+                    id={category._id}
+                    title={category.title}
+                    checked={selectedCategoryId === category._id}
+                    handleSelect={() => handleCategorySelect(category._id)}
+                />
+            ))}
+        </div>
+    );
+
+    const handleCategorySelect = (categoryId) => {
+        setSelectedCategoryId(categoryId);
+        setSearchInput('');
+        if (categoryId === '*') {
+            dispatch(getProducts());
+        } else {
+            dispatch(getProducts(categoryId));
+        }
+    };
+
+    const requriedData =
+        products.length > 0 &&
+        productsByRating.length > 0 &&
+        productsBySell.length > 0 &&
+        productsByArraival.length > 0 &&
+        categories.length > 0;
+
+    if (!requriedData) {
+        return <SpinnerComponent height={'82vh'} />;
+    } else {
         return (
             <div className='px-3 px-lg-5 py-5'>
                 <div className='row'>
@@ -61,24 +108,18 @@ const ShopScreen = () => {
                                     className='form-control form-control-lg mb-3'
                                     placeholder={t('search-product')}
                                     value={searchInput}
-                                    onChange={(e) => {
-                                        handleSearch(e.target.value);
-                                    }}
+                                    onChange={(e) => handleSearch(e.target.value)}
                                 ></input>
                             </form>
                         </div>
+                        <div className='fw-bold mb-2'>{t('filter-by-category')}</div>
+                        {renderCategories()}
                     </div>
                     <div className='col-lg-9'>
-                        <div className='row px-2'>{renderProducts()}</div>
+                        <div className='row px-2'>
+                            {loadingProducts ? <SpinnerComponent height={'72vh'} /> : renderProducts()}
+                        </div>
                     </div>
-                </div>
-            </div>
-        );
-    } else {
-        return (
-            <div className='d-flex justify-content-center align-items-center' style={{ height: '80vh' }}>
-                <div className='spinner-border' role='status'>
-                    <span className='visually-hidden'>Loading...</span>
                 </div>
             </div>
         );

@@ -41,5 +41,7 @@
     "highest-rated": "Highest Rated",
     "most-popular": "Most Popular",
     "latest-products": "Latest Products",
-    "search-product": "search product"
+    "search-product": "search product",
+    "filter-by-category": "Categories",
+    "all-categories": "All Categories"
 }
