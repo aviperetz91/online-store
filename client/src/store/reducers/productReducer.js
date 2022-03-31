@@ -9,6 +9,9 @@ import {
     PRODUCTS_BY_RATING_KEY,
     PRODUCTS_BY_SELL_KEY,
     PRODUCTS_BY_ARRAIVAL_KEY,
+    GET_CATEGORY_LIST,
+    GET_CATEGORY_LIST_SUCCESS,
+    GET_CATEGORY_LIST_FAIL,
 } from '../constants/productsConstants';
 
 const initialState = {
@@ -16,25 +19,41 @@ const initialState = {
     productsBySell: [],
     productsByArraival: [],
     products: [],
-    loading: false,
+    categories: [],
+    loadingProducts: false,
+    loadingCategories: false,
     error: undefined,
 };
 
 const productReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_PRODUCT_LIST:
-            return { ...state, loading: true };
+            return { ...state, loadingProducts: true };
         case GET_PRODUCT_LIST_SUCCESS:
             const key = getKey(action.productsBy);
             return {
                 ...state,
-                loading: false,
+                loadingProducts: false,
                 [key]: action.payload,
             };
         case GET_PRODUCT_LIST_FAIL:
             return {
                 ...state,
-                loading: false,
+                loadingProducts: false,
+                error: action.payload,
+            };
+        case GET_CATEGORY_LIST:
+            return { ...state, loadingCategories: true };
+        case GET_CATEGORY_LIST_SUCCESS:
+            return {
+                ...state,
+                loadingCategories: false,
+                categories: action.payload,
+            };
+        case GET_CATEGORY_LIST_FAIL:
+            return {
+                ...state,
+                loadingCategories: false,
                 error: action.payload,
             };
         default:
