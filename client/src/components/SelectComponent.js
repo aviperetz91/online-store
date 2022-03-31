@@ -1,13 +1,13 @@
 import React from 'react';
 
-const RadioComponent = (props) => {
-    const { id, title, checked, handleSelect } = props;
+const SelectComponent = (props) => {
+    const { id, title, type, checked, handleSelect } = props;
     return (
         <div className='my-2'>
             <input
                 className='form-check-input mx-3'
-                type='radio'
-                name='category'
+                type={type}
+                name={id}
                 id={id}
                 checked={checked}
                 onChange={() => handleSelect(id)}
@@ -19,4 +19,4 @@ const RadioComponent = (props) => {
     );
 };
 
-export default RadioComponent;
+export default SelectComponent;
