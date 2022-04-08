@@ -1,6 +1,8 @@
-import GalleryItemModalComponent from './GalleryItemModalComponent';
+import ModalComponent from '../ModalComponent';
 
-const GalleryItemComponent = ({ id, name, summary, description, image }) => {
+const GalleryItemComponent = (props) => {
+    const { id, title, summary, description, image } = props;
+
     return (
         <>
             <div className='col-lg-4 col-sm-6 mb-4'>
@@ -14,12 +16,12 @@ const GalleryItemComponent = ({ id, name, summary, description, image }) => {
                         <img className='img-fluid' src={image} alt='...' />
                     </div>
                     <div className='portfolio-caption'>
-                        <div className='portfolio-caption-heading'>{name}</div>
+                        <div className='portfolio-caption-heading'>{title}</div>
                         <div className='portfolio-caption-subheading text-muted'>{summary}</div>
                     </div>
                 </div>
             </div>
-            <GalleryItemModalComponent id={id} name={name} summary={summary} description={description} image={image} />
+            <ModalComponent id={id} title={title} summary={summary} description={description} image={image} />
         </>
     );
 };

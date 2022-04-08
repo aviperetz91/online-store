@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next';
-import closeIcon from '../../assets/img/close-icon.svg';
+import closeIcon from '../assets/img/close-icon.svg';
 
-const GalleryItemModalComponent = ({ id, name, summary, description, image }) => {
+const ModalComponent = (props) => {
+    const { id, title, summary, description, image } = props;
     const { t } = useTranslation();
 
     return (
@@ -15,7 +16,7 @@ const GalleryItemModalComponent = ({ id, name, summary, description, image }) =>
                         <div className='row justify-content-center'>
                             <div className='col-lg-8'>
                                 <div className='modal-body'>
-                                    <h2 className='text-uppercase'>{name}</h2>
+                                    <h2 className='text-uppercase'>{title}</h2>
                                     <p className='item-intro text-muted'>{summary}</p>
                                     <img className='img-fluid d-block mx-auto' src={image} alt='...' />
                                     <p>{description}</p>
@@ -37,4 +38,4 @@ const GalleryItemModalComponent = ({ id, name, summary, description, image }) =>
     );
 };
 
-export default GalleryItemModalComponent;
+export default ModalComponent;

@@ -10,7 +10,7 @@ const GalleryComponent = () => {
             <GalleryItemComponent
                 key={item.id}
                 id={item.id}
-                name={item.name}
+                title={item.title}
                 summary={item.summary}
                 description={item.description}
                 image={item.image}

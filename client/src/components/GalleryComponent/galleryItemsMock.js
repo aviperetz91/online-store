@@ -8,7 +8,7 @@ import img6 from '../../assets/img/gallery/6.jpg';
 const galleryItems = [
     {
         id: 'i1',
-        name: 'Name 1',
+        title: 'Title 1',
         summary: 'Summary 1',
         description:
             'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!',
@@ -16,7 +16,7 @@ const galleryItems = [
     },
     {
         id: 'i2',
-        name: 'Name 2',
+        title: 'Title 2',
         summary: 'Summary 2',
         description:
             'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!',
@@ -24,7 +24,7 @@ const galleryItems = [
     },
     {
         id: 'i3',
-        name: 'Name 3',
+        title: 'Title 3',
         summary: 'Summary 3',
         description:
             'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!',
@@ -32,7 +32,7 @@ const galleryItems = [
     },
     {
         id: 'i4',
-        name: 'Name 4',
+        title: 'Title 4',
         summary: 'Summary 4',
         description:
             'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!',
@@ -40,7 +40,7 @@ const galleryItems = [
     },
     {
         id: 'i5',
-        name: 'Name 5',
+        title: 'Title 5',
         summary: 'Summary 5',
         description:
             'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!',
@@ -48,7 +48,7 @@ const galleryItems = [
     },
     {
         id: 'i6',
-        name: 'Name 6',
+        title: 'Title 6',
         summary: 'Summary 6',
         description:
             'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!',
