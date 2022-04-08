@@ -8,8 +8,8 @@ const GalleryComponent = () => {
     const renderGalleryItems = () => {
         return galleryItems.map((item) => (
             <GalleryItemComponent
-                key={item.id}
-                id={item.id}
+                key={item._id}
+                id={item._id}
                 title={item.title}
                 summary={item.summary}
                 description={item.description}

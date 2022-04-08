@@ -7,7 +7,7 @@ import img6 from '../../assets/img/gallery/6.jpg';
 
 const galleryItems = [
     {
-        id: 'i1',
+        _id: '1',
         title: 'Title 1',
         summary: 'Summary 1',
         description:
@@ -15,7 +15,7 @@ const galleryItems = [
         image: img1,
     },
     {
-        id: 'i2',
+        _id: '2',
         title: 'Title 2',
         summary: 'Summary 2',
         description:
@@ -23,7 +23,7 @@ const galleryItems = [
         image: img2,
     },
     {
-        id: 'i3',
+        _id: '3',
         title: 'Title 3',
         summary: 'Summary 3',
         description:
@@ -31,7 +31,7 @@ const galleryItems = [
         image: img3,
     },
     {
-        id: 'i4',
+        _id: '4',
         title: 'Title 4',
         summary: 'Summary 4',
         description:
@@ -39,7 +39,7 @@ const galleryItems = [
         image: img4,
     },
     {
-        id: 'i5',
+        id: '5',
         title: 'Title 5',
         summary: 'Summary 5',
         description:
@@ -47,7 +47,7 @@ const galleryItems = [
         image: img5,
     },
     {
-        id: 'i6',
+        _id: '6',
         title: 'Title 6',
         summary: 'Summary 6',
         description:
