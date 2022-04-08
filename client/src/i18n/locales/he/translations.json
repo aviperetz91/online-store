@@ -42,10 +42,18 @@
     "most-popular": "הנמכרים ביותר",
     "latest-products": "החדשים ביותר",
     "search-product": "הזן מוצר לחיפוש",
-    "filter-by-category": "קטגוריות",
-    "all-categories": "כל הקטגוריות",
+    "filter-by-category": "קטגוריה",
+    "all-categories": "הכל",
+    "filter-by-price": "מחיר",
+    "all-prices": "הכל",
+    "0-19.99": "₪ 19.99 - 0",
+    "20-49.99": "₪ 49.99 - 20",
+    "50-99.99": "₪ 99.99 - 50",
+    "100-199.99": "₪ 199.99 - 100",
+    "200-1000000": "₪ 200 ומעלה",
     "sorting-options": "אפשרויות מיון",
+    "all-sorting-options": "ללא",
     "by-rating": "לפי דירוג",
     "by-sell": "לפי מכירות",
-    "by-arraival": "מהחדש לישן"
+    "by-arraival": "לפי תאריך (מהחדש לישן)"
 }

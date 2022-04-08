@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { getProducts, getCategories } from '../store/actions/productActions';
-import { BY_RATING, BY_SELL, BY_ARRAIVAL, DESC_ORDER, ALL_CATEGORIES } from '../store/constants/productsConstants';
+import { DESC_ORDER, ALL_CATEGORIES, ALL_PRICES, ALL_SORTING_OPTIONS } from '../store/constants/productsConstants';
+import PRICES from '../store/constants/prices';
+import SORTING_OPTIONS from '../store/constants/sortingOptions';
 import SpinnerComponent from '../components/SpinnerComponent';
 import ProductComponent from '../components/ProductComponent';
 import SelectComponent from '../components/SelectComponent';
@@ -13,48 +15,37 @@ const ShopScreen = () => {
     const { products, categories, loadingProducts } = useSelector((state) => state.product);
     const [searchInput, setSearchInput] = useState('');
     const [searchResults, setSearchResults] = useState();
-    const [selectedCategoryId, setSelectedCategoryId] = useState();
-    const [selectedSortOption, setSelectedSortOption] = useState();
-    const sortingOptions = [
-        {
-            id: BY_RATING,
-            title: t('by-rating'),
-            checked: selectedSortOption === BY_RATING,
-            handleSelect: () => handleSortOptionSelect(BY_RATING),
-        },
-        {
-            id: BY_SELL,
-            title: t('by-sell'),
-            checked: selectedSortOption === BY_SELL,
-            handleSelect: () => handleSortOptionSelect(BY_SELL),
-        },
-        {
-            id: BY_ARRAIVAL,
-            title: t('by-arraival'),
-            checked: selectedSortOption === BY_ARRAIVAL,
-            handleSelect: () => handleSortOptionSelect(BY_ARRAIVAL),
-        },
-    ];
+    const [selectedValues, setSelectedValues] = useState({
+        selectedCategoryId: undefined,
+        selectedPriceId: undefined,
+        selectedSortingOptionId: undefined,
+    });
+
+    const { selectedCategoryId, selectedPriceId, selectedSortingOptionId } = selectedValues;
+    const requriedData = products.length > 0 && categories.length > 0;
 
     useEffect(() => {
-        dispatch(getProducts());
         dispatch(getCategories());
     }, [dispatch]);
+
+    useEffect(() => {
+        if (selectedCategoryId || selectedPriceId || selectedSortingOptionId) {
+            dispatch(getProducts(selectedCategoryId, selectedPriceId, selectedSortingOptionId, DESC_ORDER));
+        } else {
+            dispatch(getProducts());
+        }
+    }, [dispatch, selectedCategoryId, selectedPriceId, selectedSortingOptionId]);
 
     const renderProducts = () => {
         if (searchInput !== '' && searchResults && searchResults.length > 0) {
             return searchResults.map((product) => <ProductComponent key={product._id} product={product} />);
-        } else if (searchResults && searchResults.length === 0) {
+        } else if (searchInput !== '' && searchResults && searchResults.length === 0) {
+            return <h4 className='mt-2'>{t('no-results')}</h4>;
+        } else if (!requriedData && (selectedCategoryId || selectedPriceId || selectedSortingOptionId)) {
             return <h4 className='mt-2'>{t('no-results')}</h4>;
         } else {
             return products.map((product) => <ProductComponent key={product._id} product={product} />);
         }
-    };
-
-    const handleSearch = (searchInput) => {
-        setSearchInput(searchInput);
-        const results = [...products].filter((product) => product.title.toLowerCase().includes(searchInput));
-        setSearchResults(results);
     };
 
     const renderCategories = () => (
@@ -64,7 +55,7 @@ const ShopScreen = () => {
                 title={t('all-categories')}
                 type='radio'
                 checked={!selectedCategoryId}
-                handleSelect={() => handleCategorySelect(null)}
+                handleSelect={() => handleSelect('selectedCategoryId', null)}
             />
             {categories.map((category) => (
                 <SelectComponent
@@ -73,41 +64,71 @@ const ShopScreen = () => {
                     type='radio'
                     title={category.title}
                     checked={selectedCategoryId === category._id}
-                    handleSelect={() => handleCategorySelect(category._id)}
+                    handleSelect={() => handleSelect('selectedCategoryId', category._id)}
                 />
             ))}
         </div>
     );
 
-    const handleCategorySelect = (categoryId) => {
-        setSelectedCategoryId(categoryId);
-        setSearchInput('');
-        dispatch(getProducts(categoryId, selectedSortOption, DESC_ORDER));
-    };
-
-    const renderSortOptions = () => (
+    const renderPrices = () => (
         <div className='mb-4'>
-            {sortingOptions.map((option) => (
+            <SelectComponent
+                id={ALL_PRICES}
+                title={t('all-prices')}
+                type='radio'
+                checked={!selectedPriceId}
+                handleSelect={() => handleSelect('selectedPriceId', null)}
+            />
+            {PRICES.map((priceRange) => (
                 <SelectComponent
-                    key={option.id}
-                    id={option.id}
+                    key={priceRange._id}
+                    id={priceRange._id}
                     type='radio'
-                    title={option.title}
-                    checked={option.checked}
-                    handleSelect={() => handleSortOptionSelect(option.id)}
+                    title={t(priceRange._id)}
+                    checked={selectedPriceId === priceRange._id}
+                    handleSelect={() => handleSelect('selectedPriceId', priceRange._id)}
                 />
             ))}
         </div>
     );
 
-    const handleSortOptionSelect = (option) => {
-        setSelectedSortOption(option);
-        dispatch(getProducts(selectedCategoryId, option, DESC_ORDER));
+    const renderSortingOptions = () => (
+        <div className='mb-4'>
+            <SelectComponent
+                id={ALL_SORTING_OPTIONS}
+                title={t('all-sorting-options')}
+                type='radio'
+                checked={!selectedSortingOptionId}
+                handleSelect={() => handleSelect('selectedSortingOptionId', null)}
+            />
+            {SORTING_OPTIONS.map((option) => (
+                <SelectComponent
+                    key={option._id}
+                    id={option._id}
+                    type='radio'
+                    title={t(option.title)}
+                    checked={selectedSortingOptionId === option._id}
+                    handleSelect={() => handleSelect('selectedSortingOptionId', option._id)}
+                />
+            ))}
+        </div>
+    );
+
+    const handleSearch = (searchInput) => {
+        setSearchInput(searchInput);
+        const results = [...products].filter((product) => product.title.toLowerCase().includes(searchInput));
+        setSearchResults(results);
     };
 
-    const requriedData = products.length > 0 && categories.length > 0;
+    const handleSelect = (key, value) => {
+        setSearchInput('');
+        setSelectedValues({
+            ...selectedValues,
+            [key]: value,
+        });
+    };
 
-    if (!requriedData) {
+    if (!requriedData && !selectedCategoryId && !selectedPriceId && !selectedSortingOptionId) {
         return <SpinnerComponent height={'82vh'} />;
     } else {
         return (
@@ -126,8 +147,10 @@ const ShopScreen = () => {
                         </div>
                         <div className='fw-bold my-1 mx-2'>{t('filter-by-category')}</div>
                         {renderCategories()}
+                        <div className='fw-bold my-1 mx-2'>{t('filter-by-price')}</div>
+                        {renderPrices()}
                         <div className='fw-bold my-1 mx-2'>{t('sorting-options')}</div>
-                        {renderSortOptions()}
+                        {renderSortingOptions()}
                     </div>
                     <div className='col-lg-9'>
                         <div className='row px-2'>

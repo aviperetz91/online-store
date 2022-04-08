@@ -9,8 +9,9 @@ import {
     GET_CATEGORY_LIST_FAIL,
 } from '../constants/productsConstants';
 
-export const getProducts = (category, sortBy, order, limit) => {
-    const categoryId = category ? category : '';
+export const getProducts = (categoryId, priceRange, sortBy, order, limit) => {
+    const categoryIdValue = categoryId ? categoryId : '';
+    const priceRangeValue = priceRange ? priceRange : '';
     const sortByValue = sortBy ? sortBy : '';
     const orderValue = order ? order : '';
     const limitValue = limit ? limit : '';
@@ -18,7 +19,7 @@ export const getProducts = (category, sortBy, order, limit) => {
         try {
             dispatch({ type: GET_PRODUCT_LIST });
             const { data } = await axios.get(
-                `${API_URL}/api/products?categoryId=${categoryId}&sortBy=${sortByValue}&order=${orderValue}&limit=${limitValue}`
+                `${API_URL}/api/products?categoryId=${categoryIdValue}&priceRange=${priceRangeValue}&sortBy=${sortByValue}&order=${orderValue}&limit=${limitValue}`
             );
             dispatch({ type: GET_PRODUCT_LIST_SUCCESS, payload: data });
         } catch (error) {
