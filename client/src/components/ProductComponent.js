@@ -20,7 +20,7 @@ const ProductComponent = ({ product }) => {
                     <div className='card-text'>
                         <Rating name='rating' value={rating} readOnly size='small' />
                     </div>
-                    <div className='card-text'>{`$${price}`}</div>
+                    <div className='card-text'>{`${t('price-symbol')}${price}`}</div>
                     <div className='card-button'>
                         <FaShoppingCart className='mx-1' />
                         {`${t('purchase')}`}

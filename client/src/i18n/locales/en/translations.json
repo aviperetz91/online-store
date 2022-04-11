@@ -55,5 +55,6 @@
     "all-sorting-options": "None",
     "by-rating": "By Rating",
     "by-sell": "By Sell",
-    "by-arraival": "By Arraival"
+    "by-arraival": "By Arraival",
+    "price-symbol": "$" 
 }

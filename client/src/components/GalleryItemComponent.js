@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import ModalComponent from '../ModalComponent';
+import ModalComponent from './ModalComponent';
 
 const GalleryItemComponent = (props) => {
     const { id, title, summary, description, image } = props;

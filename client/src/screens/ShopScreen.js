@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { getProducts, getCategories } from '../store/actions/productActions';
-import { DESC_ORDER, ALL_CATEGORIES, ALL_PRICES, ALL_SORTING_OPTIONS } from '../store/constants/productsConstants';
-import PRICES from '../store/constants/prices';
-import SORTING_OPTIONS from '../store/constants/sortingOptions';
+import { PRODUCT_PARAMS, DEFAULT_RADIO } from '../config/consts';
+import prices from '../mock/pricesMock';
+import sortingOptions from '../mock/sortingOptionsMock';
 import SpinnerComponent from '../components/SpinnerComponent';
 import ProductComponent from '../components/ProductComponent';
 import SelectComponent from '../components/SelectComponent';
@@ -30,7 +30,9 @@ const ShopScreen = () => {
 
     useEffect(() => {
         if (selectedCategoryId || selectedPriceId || selectedSortingOptionId) {
-            dispatch(getProducts(selectedCategoryId, selectedPriceId, selectedSortingOptionId, DESC_ORDER));
+            dispatch(
+                getProducts(selectedCategoryId, selectedPriceId, selectedSortingOptionId, PRODUCT_PARAMS.DESC_ORDER)
+            );
         } else {
             dispatch(getProducts());
         }
@@ -51,7 +53,7 @@ const ShopScreen = () => {
     const renderCategories = () => (
         <div className='mb-4'>
             <SelectComponent
-                id={ALL_CATEGORIES}
+                id={DEFAULT_RADIO.ALL_CATEGORIES}
                 title={t('all-categories')}
                 type='radio'
                 checked={!selectedCategoryId}
@@ -73,13 +75,13 @@ const ShopScreen = () => {
     const renderPrices = () => (
         <div className='mb-4'>
             <SelectComponent
-                id={ALL_PRICES}
+                id={DEFAULT_RADIO.ALL_PRICES}
                 title={t('all-prices')}
                 type='radio'
                 checked={!selectedPriceId}
                 handleSelect={() => handleSelect('selectedPriceId', null)}
             />
-            {PRICES.map((priceRange) => (
+            {prices.map((priceRange) => (
                 <SelectComponent
                     key={priceRange._id}
                     id={priceRange._id}
@@ -95,13 +97,13 @@ const ShopScreen = () => {
     const renderSortingOptions = () => (
         <div className='mb-4'>
             <SelectComponent
-                id={ALL_SORTING_OPTIONS}
+                id={DEFAULT_RADIO.ALL_SORTING_OPTIONS}
                 title={t('all-sorting-options')}
                 type='radio'
                 checked={!selectedSortingOptionId}
                 handleSelect={() => handleSelect('selectedSortingOptionId', null)}
             />
-            {SORTING_OPTIONS.map((option) => (
+            {sortingOptions.map((option) => (
                 <SelectComponent
                     key={option._id}
                     id={option._id}

@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import closeIcon from '../assets/img/close-icon.svg';
 import Rating from '@mui/material/Rating';
 
 const ModalComponent = (props) => {
+    const { t } = useTranslation();
     const { id, title, summary, description, image, btnText, price, rating } = props;
 
     return (
@@ -24,9 +26,9 @@ const ModalComponent = (props) => {
                                             <Rating name='rating' value={rating} readOnly size='large' />
                                         </div>
                                     )}
-                                    {price && <p className='fw-bold fs-3'>{`$${price}`}</p>}
+                                    {price && <p className='fw-bold fs-3'>{`${t('price-symbol')}${price}`}</p>}
                                     <button
-                                        className='btn btn-primary btn-xl text-uppercase'
+                                        className='btn btn-primary btn-xl text-uppercase text-dark'
                                         data-bs-dismiss='modal'
                                         type='button'
                                     >

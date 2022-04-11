@@ -11,3 +11,15 @@ export const PATHS = {
 export const FORMS_NAMES = {
     CONTACT_FORM: 'contactForm',
 };
+
+export const PRODUCT_PARAMS = {
+    ASC_ORDER: 'asc',
+    DESC_ORDER: 'desc',
+    LIMIT: 4,
+};
+
+export const DEFAULT_RADIO = {
+    ALL_CATEGORIES: 'ALL_CATEGORIES',
+    ALL_PRICES: 'ALL_PRICES',
+    ALL_SORTING_OPTIONS: 'ALL_SORTING_OPTIONS',
+};

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import galleryItems from './galleryItemsMock';
+import galleryItems from '../mock/galleryItemsMock';
 import GalleryItemComponent from './GalleryItemComponent';
 
 const GalleryComponent = () => {

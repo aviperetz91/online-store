@@ -55,5 +55,6 @@
     "all-sorting-options": "ללא",
     "by-rating": "לפי דירוג",
     "by-sell": "לפי מכירות",
-    "by-arraival": "לפי תאריך (מהחדש לישן)"
+    "by-arraival": "לפי תאריך (מהחדש לישן)",
+    "price-symbol": "₪"
 }

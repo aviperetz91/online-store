@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import services from './servicesMock';
+import services from '../mock/servicesMock';
 import ServiceItemComponent from './ServiceItemComponent';
 
 const ServicesComponent = () => {
