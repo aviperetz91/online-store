@@ -56,5 +56,10 @@
     "by-rating": "לפי דירוג",
     "by-sell": "לפי מכירות",
     "by-arraival": "לפי תאריך (מהחדש לישן)",
-    "price-symbol": "₪"
+    "price-symbol": "₪",
+    "go-back": "חזור",
+    "sold-label": "פריטים שנמכרו",
+    "quantity-label": "כמות במלאי",
+    "price-label": "מחיר",
+    "add-to-cart": "הוסף לעגלה"
 }

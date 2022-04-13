@@ -39,7 +39,7 @@ const galleryItems = [
         image: img4,
     },
     {
-        id: '5',
+        _id: '5',
         title: 'Title 5',
         summary: 'Summary 5',
         description:

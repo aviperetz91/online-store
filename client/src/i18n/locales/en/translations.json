@@ -56,5 +56,10 @@
     "by-rating": "By Rating",
     "by-sell": "By Sell",
     "by-arraival": "By Arraival",
-    "price-symbol": "$" 
+    "price-symbol": "$",
+    "go-back": "Go Back",
+    "sold-label": "Sold Items",
+    "quantity-label": "In Stock",
+    "price-label": "Price",
+    "add-to-cart": "Add to cart"
 }

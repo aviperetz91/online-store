@@ -6,6 +6,7 @@ export const API_URL = process.env.REACT_APP_API_URL;
 export const PATHS = {
     HOME_SCREEN_PATH: '/',
     SHOP_SCREEN_PATH: '/shop',
+    PRODUCT_DETAILS_SCREEN_PATH: '/product/:id',
 };
 
 export const FORMS_NAMES = {

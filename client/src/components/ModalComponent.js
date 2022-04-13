@@ -28,7 +28,7 @@ const ModalComponent = (props) => {
                                     )}
                                     {price && <p className='fw-bold fs-3'>{`${t('price-symbol')}${price}`}</p>}
                                     <button
-                                        className='btn btn-primary btn-xl text-uppercase text-dark'
+                                        className='btn btn-primary btn-xl text-uppercase'
                                         data-bs-dismiss='modal'
                                         type='button'
                                     >
