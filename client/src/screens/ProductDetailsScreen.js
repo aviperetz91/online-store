@@ -1,18 +1,21 @@
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Link, useParams } from 'react-router-dom';
 import { API_URL } from '../config/consts';
 import { HiOutlineArrowNarrowRight, HiOutlineArrowNarrowLeft } from 'react-icons/hi';
+import { addToCart } from '../store/actions/cartActions';
 import axios from 'axios';
 import SpinnerComponent from '../components/SpinnerComponent';
 import Rating from '@mui/material/Rating';
 
 const ProductDetailsScreen = () => {
     const { i18n, t } = useTranslation();
-    const lang = i18n.language;
     const { id } = useParams();
     const [product, setProduct] = useState();
     const [error, setError] = useState();
+    const lang = i18n.language;
+    const dispatch = useDispatch();
 
     useEffect(() => {
         getProductById();
@@ -29,6 +32,10 @@ const ProductDetailsScreen = () => {
             }
             setError(message);
         }
+    };
+
+    const handleAddToCart = () => {
+        dispatch(addToCart(id));
     };
 
     if (error) {
@@ -85,7 +92,9 @@ const ProductDetailsScreen = () => {
                                     </div>
                                 </li>
                                 <li className='list-group-item py-3 d-flex justify-content-center'>
-                                    <button className='btn btn-primary btn-xl'>{t('add-to-cart')}</button>
+                                    <button onClick={handleAddToCart} className='btn btn-primary btn-xl'>
+                                        {t('add-to-cart')}
+                                    </button>
                                 </li>
                             </ul>
                         </div>

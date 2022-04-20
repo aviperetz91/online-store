@@ -1,10 +1,12 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import reduxThunk from 'redux-thunk';
 import productReducer from './reducers/productReducer';
+import cartReducer from './reducers/cartReducer';
 import { reducer as formReducer } from 'redux-form';
 
 const rootReducer = combineReducers({
     product: productReducer,
+    cart: cartReducer,
     form: formReducer,
 });
 

@@ -11,7 +11,7 @@ const ProductComponent = ({ product }) => {
         <>
             <div className='col-6 col-md-5 col-lg-4 col-xl-3 mb-4'>
                 <Link to={`/product/${_id}`} className='card h-100 text-dark'>
-                    <div className='card-image card-product-img'>
+                    <div className='card-image product-img'>
                         <img src={image} alt='product' />
                     </div>
                     <div className='card-body p-0'>

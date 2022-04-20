@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import { PATHS } from '../config/consts';
@@ -6,8 +7,9 @@ import { FaShoppingCart } from 'react-icons/fa';
 
 const HeaderComponent = () => {
     const { i18n, t } = useTranslation();
-    const lang = i18n.language;
     const location = useLocation();
+    const { cartItems } = useSelector((state) => state.cart);
+    const lang = i18n.language;
     const isHomeScreen = location.pathname === PATHS.HOME_SCREEN_PATH;
 
     useEffect(() => {
@@ -170,7 +172,7 @@ const HeaderComponent = () => {
                             <button className='btn btn-outline-light'>
                                 <FaShoppingCart className='mx-1' />
                                 {t('cart')}
-                                <span className='badge bg-light text-dark mx-1 rounded-pill'>0</span>
+                                <span className='badge bg-light text-dark mx-1 rounded-pill'>{cartItems.length}</span>
                             </button>
                         </>
                     )}
