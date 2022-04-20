@@ -6,7 +6,7 @@ import { PRODUCT_PARAMS, DEFAULT_RADIO } from '../config/consts';
 import prices from '../mock/pricesMock';
 import sortingOptions from '../mock/sortingOptionsMock';
 import SpinnerComponent from '../components/SpinnerComponent';
-import ProductComponent from '../components/ProductComponent';
+import CardComponent from '../components/CardComponent';
 import SelectComponent from '../components/SelectComponent';
 
 const ShopScreen = () => {
@@ -40,13 +40,13 @@ const ShopScreen = () => {
 
     const renderProducts = () => {
         if (searchInput !== '' && searchResults && searchResults.length > 0) {
-            return searchResults.map((product) => <ProductComponent key={product._id} product={product} />);
+            return searchResults.map((product) => <CardComponent key={product._id} product={product} />);
         } else if (searchInput !== '' && searchResults && searchResults.length === 0) {
             return <h4 className='mt-2'>{t('no-results')}</h4>;
         } else if (!requriedData && (selectedCategoryId || selectedPriceId || selectedSortingOptionId)) {
             return <h4 className='mt-2'>{t('no-results')}</h4>;
         } else {
-            return products.map((product) => <ProductComponent key={product._id} product={product} />);
+            return products.map((product) => <CardComponent key={product._id} product={product} />);
         }
     };
 

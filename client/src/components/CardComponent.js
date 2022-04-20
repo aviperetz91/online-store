@@ -2,14 +2,15 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
 import Rating from '@mui/material/Rating';
+import '../styles/cardStyle.scss';
 
-const ProductComponent = ({ product }) => {
+const CardComponent = ({ product }) => {
     const { t } = useTranslation();
     const { _id, image, title, price, rating } = product;
 
     return (
         <>
-            <div className='col-6 col-md-5 col-lg-4 col-xl-3 mb-4'>
+            <div className='col-6 col-md-5 col-lg-4 col-xl-3 mb-4 product-card'>
                 <Link to={`/product/${_id}`} className='card h-100 text-dark'>
                     <div className='card-image product-img'>
                         <img src={image} alt='product' />
@@ -31,4 +32,4 @@ const ProductComponent = ({ product }) => {
     );
 };
 
-export default ProductComponent;
+export default CardComponent;
