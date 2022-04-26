@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { API_URL } from '../config/consts';
 import { HiOutlineArrowNarrowRight, HiOutlineArrowNarrowLeft } from 'react-icons/hi';
 import { addToCart } from '../store/actions/cartActions';
+import { PATHS, SIZES } from '../config/consts';
 import axios from 'axios';
 import SpinnerComponent from '../components/SpinnerComponent';
 import Rating from '@mui/material/Rating';
@@ -16,6 +17,7 @@ const ProductDetailsScreen = () => {
     const [error, setError] = useState();
     const lang = i18n.language;
     const dispatch = useDispatch();
+    const history = useNavigate();
 
     useEffect(() => {
         getProductById();
@@ -36,6 +38,7 @@ const ProductDetailsScreen = () => {
 
     const handleAddToCart = () => {
         dispatch(addToCart(id));
+        history(PATHS.CART_SCREEN_PATH);
     };
 
     if (error) {
@@ -46,14 +49,7 @@ const ProductDetailsScreen = () => {
         const { image, title, price, rating, description, quantity, sold } = product;
         return (
             <>
-                <div className='container'>
-                    <Link to={'/shop'} className='btn my-3'>
-                        {lang === 'he' ? (
-                            <HiOutlineArrowNarrowRight size={35} color='black' />
-                        ) : (
-                            <HiOutlineArrowNarrowLeft size={35} color='black' />
-                        )}
-                    </Link>
+                <div className='container mt-5'>
                     <div className='row'>
                         <div className='col-md-5 mb-3'>
                             <div className='d-flex justify-content-center'>
@@ -92,13 +88,24 @@ const ProductDetailsScreen = () => {
                                     </div>
                                 </li>
                                 <li className='list-group-item py-3 d-flex justify-content-center'>
-                                    <button onClick={handleAddToCart} className='btn btn-primary btn-xl'>
+                                    <button
+                                        onClick={handleAddToCart}
+                                        className='btn btn-primary btn-lg w-100 rounded-0'
+                                    >
                                         {t('add-to-cart')}
                                     </button>
                                 </li>
                             </ul>
                         </div>
                     </div>
+                    <Link to={PATHS.SHOP_SCREEN_PATH} className='btn my-3'>
+                        {lang === 'he' ? (
+                            <HiOutlineArrowNarrowRight size={SIZES.ARROW_BACK_SIZE} color='black' />
+                        ) : (
+                            <HiOutlineArrowNarrowLeft size={SIZES.ARROW_BACK_SIZE} color='black' />
+                        )}
+                    </Link>
+                    <span className='text-muted'>{t('back-to-shop')} </span>
                 </div>
             </>
         );

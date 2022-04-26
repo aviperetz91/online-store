@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
+import { PATHS } from '../config/consts';
 import Rating from '@mui/material/Rating';
 import '../styles/cardStyle.scss';
 
@@ -24,7 +25,7 @@ const CardComponent = ({ product }) => {
                     <div className='card-text'>{`${t('price-symbol')}${price}`}</div>
                     <div className='card-button'>
                         <FaShoppingCart className='mx-1' />
-                        {`${t('purchase')}`}
+                        {`${t('add-to-cart')}`}
                     </div>
                 </Link>
             </div>

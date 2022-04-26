@@ -161,19 +161,42 @@ const HeaderComponent = () => {
                             <ul className={getUlClasses('reverse')}>
                                 <li className='nav-item'>
                                     <Link
+                                        to={PATHS.HOME_SCREEN_PATH}
                                         className='nav-link pointer'
-                                        to='/'
                                         onClick={() => insidePageNavigation('#root')}
                                     >
                                         {t('home')}
                                     </Link>
                                 </li>
+                                <li className='nav-item dropdown'>
+                                    <div
+                                        className='nav-link pointer'
+                                        id='navbarDropdown'
+                                        role='button'
+                                        data-bs-toggle='dropdown'
+                                        aria-expanded='false'
+                                    >
+                                        {t('language')}
+                                    </div>
+                                    <ul className='dropdown-menu' aria-labelledby='navbarDropdown'>
+                                        <li>
+                                            <button className='dropdown-item' onClick={changeLanguage} value='he'>
+                                                עברית
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button className='dropdown-item' onClick={changeLanguage} value='en'>
+                                                English
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </li>
                             </ul>
-                            <button className='btn btn-outline-light'>
+                            <Link to={PATHS.CART_SCREEN_PATH} className='btn btn-outline-light'>
                                 <FaShoppingCart className='mx-1' />
                                 {t('cart')}
                                 <span className='badge bg-light text-dark mx-1 rounded-pill'>{cartItems.length}</span>
-                            </button>
+                            </Link>
                         </>
                     )}
                 </div>

@@ -61,5 +61,12 @@
     "sold-label": "Sold Items",
     "quantity-label": "In Stock",
     "price-label": "Price",
-    "add-to-cart": "Add to cart"
+    "add-to-cart": "Add to cart",
+    "shopping-cart": "Shopping Cart",
+    "back-to-shop": "Back to shop",
+    "total-products": "Products in cart",
+    "total-items": "Total Items",
+    "total-price": "Total Price",
+    "move-to-checkout": "Checkout",
+    "cart-empty": "Currently your cart is empty"
 }

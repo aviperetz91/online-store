@@ -61,5 +61,12 @@
     "sold-label": "פריטים שנמכרו",
     "quantity-label": "כמות במלאי",
     "price-label": "מחיר",
-    "add-to-cart": "הוסף לעגלה"
+    "add-to-cart": "הוסף לעגלה",
+    "shopping-cart": "העגלה שלי",
+    "back-to-shop": "חזור לחנות",
+    "total-products": "מוצרים בעגלה",
+    "total-items": "סה״כ פריטים",
+    "total-price": "מחיר כולל",
+    "move-to-checkout": "לרכישה",
+    "cart-empty": "עדיין אין לך מוצרים בעגלה"
 }
