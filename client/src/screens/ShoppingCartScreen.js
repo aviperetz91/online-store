@@ -90,6 +90,16 @@ const ShoppingCartScreen = () => {
         return (
             <div className='container'>
                 <h4 className='mt-4'>{t('cart-empty')}</h4>
+                <div className='back-to-shop mt-4'>
+                    <Link to={PATHS.SHOP_SCREEN_PATH} className='btn'>
+                        {lang === 'he' ? (
+                            <HiOutlineArrowNarrowRight size={SIZES.ARROW_BACK_SIZE} color='black' />
+                        ) : (
+                            <HiOutlineArrowNarrowLeft size={SIZES.ARROW_BACK_SIZE} color='black' />
+                        )}
+                    </Link>
+                    <span className='text-muted'>{t('back-to-shop')} </span>
+                </div>
             </div>
         );
     } else {

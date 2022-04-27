@@ -1,18 +1,31 @@
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
-import { PATHS } from '../config/consts';
+import { addToCart } from '../store/actions/cartActions';
 import Rating from '@mui/material/Rating';
 import '../styles/cardStyle.scss';
 
 const CardComponent = ({ product }) => {
-    const { t } = useTranslation();
     const { _id, image, title, price, rating } = product;
+
+    const { t } = useTranslation();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleAddToCart = (e) => {
+        e.stopPropagation();
+        dispatch(addToCart(_id));
+    };
+
+    const navigateToProductPage = () => {
+        navigate(`/product/${_id}`);
+    };
 
     return (
         <>
             <div className='col-6 col-md-5 col-lg-4 col-xl-3 mb-4 product-card'>
-                <Link to={`/product/${_id}`} className='card h-100 text-dark'>
+                <div onClick={navigateToProductPage} className='card h-100'>
                     <div className='card-image product-img'>
                         <img src={image} alt='product' />
                     </div>
@@ -23,11 +36,11 @@ const CardComponent = ({ product }) => {
                         <Rating name='rating' value={rating} readOnly size='small' />
                     </div>
                     <div className='card-text'>{`${t('price-symbol')}${price}`}</div>
-                    <div className='card-button'>
+                    <div className='card-button' onClick={(e) => handleAddToCart(e)}>
                         <FaShoppingCart className='mx-1' />
                         {`${t('add-to-cart')}`}
                     </div>
-                </Link>
+                </div>
             </div>
         </>
     );

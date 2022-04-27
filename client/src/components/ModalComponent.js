@@ -4,10 +4,10 @@ import Rating from '@mui/material/Rating';
 
 const ModalComponent = (props) => {
     const { t } = useTranslation();
-    const { id, title, summary, description, image, btnText, price, rating } = props;
+    const { _id, title, summary, description, image, btnText, price, rating } = props;
 
     return (
-        <div className='portfolio-modal modal fade' id={id} tabIndex='-1' role='dialog' aria-hidden='true'>
+        <div className='portfolio-modal modal fade' id={_id} tabIndex='-1' role='dialog' aria-hidden='true'>
             <div className='modal-dialog'>
                 <div className='modal-content'>
                     <div className='close-modal' data-bs-dismiss='modal'>

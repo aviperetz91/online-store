@@ -8,7 +8,7 @@ const ServicesComponent = () => {
     const renderServices = () => {
         return services.map((service) => (
             <ServiceItemComponent
-                key={service.id}
+                key={service._id}
                 icon={service.icon}
                 name={service.name}
                 description={service.description}

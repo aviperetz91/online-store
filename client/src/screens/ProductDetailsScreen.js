@@ -12,12 +12,12 @@ import Rating from '@mui/material/Rating';
 
 const ProductDetailsScreen = () => {
     const { i18n, t } = useTranslation();
-    const { id } = useParams();
+    const { _id } = useParams();
     const [product, setProduct] = useState();
     const [error, setError] = useState();
     const lang = i18n.language;
     const dispatch = useDispatch();
-    const history = useNavigate();
+    const navigate = useNavigate();
 
     useEffect(() => {
         getProductById();
@@ -25,7 +25,7 @@ const ProductDetailsScreen = () => {
 
     const getProductById = async () => {
         try {
-            const { data } = await axios.get(`${API_URL}/api/products/${id}`);
+            const { data } = await axios.get(`${API_URL}/api/products/${_id}`);
             setProduct(data);
         } catch (error) {
             let message = error.message;
@@ -37,8 +37,12 @@ const ProductDetailsScreen = () => {
     };
 
     const handleAddToCart = () => {
-        dispatch(addToCart(id));
-        history(PATHS.CART_SCREEN_PATH);
+        dispatch(addToCart(_id));
+        navigate(PATHS.CART_SCREEN_PATH);
+    };
+
+    const navigatePageBack = () => {
+        navigate(-1);
     };
 
     if (error) {
@@ -98,14 +102,14 @@ const ProductDetailsScreen = () => {
                             </ul>
                         </div>
                     </div>
-                    <Link to={PATHS.SHOP_SCREEN_PATH} className='btn my-3'>
+                    <div onClick={navigatePageBack} className='btn my-3 pointer'>
                         {lang === 'he' ? (
                             <HiOutlineArrowNarrowRight size={SIZES.ARROW_BACK_SIZE} color='black' />
                         ) : (
                             <HiOutlineArrowNarrowLeft size={SIZES.ARROW_BACK_SIZE} color='black' />
                         )}
-                    </Link>
-                    <span className='text-muted'>{t('back-to-shop')} </span>
+                    </div>
+                    <span className='text-muted'>{t('go-back')} </span>
                 </div>
             </>
         );

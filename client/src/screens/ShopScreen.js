@@ -53,7 +53,7 @@ const ShopScreen = () => {
     const renderCategories = () => (
         <div className='mb-4'>
             <SelectComponent
-                id={DEFAULT_RADIO.ALL_CATEGORIES}
+                _id={DEFAULT_RADIO.ALL_CATEGORIES}
                 title={t('all-categories')}
                 type='radio'
                 checked={!selectedCategoryId}
@@ -62,7 +62,7 @@ const ShopScreen = () => {
             {categories.map((category) => (
                 <SelectComponent
                     key={category._id}
-                    id={category._id}
+                    _id={category._id}
                     type='radio'
                     title={category.title}
                     checked={selectedCategoryId === category._id}
@@ -75,7 +75,7 @@ const ShopScreen = () => {
     const renderPrices = () => (
         <div className='mb-4'>
             <SelectComponent
-                id={DEFAULT_RADIO.ALL_PRICES}
+                _id={DEFAULT_RADIO.ALL_PRICES}
                 title={t('all-prices')}
                 type='radio'
                 checked={!selectedPriceId}
@@ -84,7 +84,7 @@ const ShopScreen = () => {
             {prices.map((priceRange) => (
                 <SelectComponent
                     key={priceRange._id}
-                    id={priceRange._id}
+                    _id={priceRange._id}
                     type='radio'
                     title={t(priceRange._id)}
                     checked={selectedPriceId === priceRange._id}
@@ -97,7 +97,7 @@ const ShopScreen = () => {
     const renderSortingOptions = () => (
         <div className='mb-4'>
             <SelectComponent
-                id={DEFAULT_RADIO.ALL_SORTING_OPTIONS}
+                _id={DEFAULT_RADIO.ALL_SORTING_OPTIONS}
                 title={t('all-sorting-options')}
                 type='radio'
                 checked={!selectedSortingOptionId}
@@ -106,7 +106,7 @@ const ShopScreen = () => {
             {sortingOptions.map((option) => (
                 <SelectComponent
                     key={option._id}
-                    id={option._id}
+                    _id={option._id}
                     type='radio'
                     title={t(option.title)}
                     checked={selectedSortingOptionId === option._id}
