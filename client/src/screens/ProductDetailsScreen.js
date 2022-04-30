@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { API_URL } from '../config/consts';
 import { HiOutlineArrowNarrowRight, HiOutlineArrowNarrowLeft } from 'react-icons/hi';
 import { addToCart } from '../store/actions/cartActions';
@@ -104,9 +104,9 @@ const ProductDetailsScreen = () => {
                     </div>
                     <div onClick={navigatePageBack} className='btn my-3 pointer'>
                         {lang === 'he' ? (
-                            <HiOutlineArrowNarrowRight size={SIZES.ARROW_BACK_SIZE} color='black' />
+                            <HiOutlineArrowNarrowRight className='text-dark' size={SIZES.ARROW_BACK_SIZE} />
                         ) : (
-                            <HiOutlineArrowNarrowLeft size={SIZES.ARROW_BACK_SIZE} color='black' />
+                            <HiOutlineArrowNarrowLeft className='text-dark' size={SIZES.ARROW_BACK_SIZE} />
                         )}
                     </div>
                     <span className='text-muted'>{t('go-back')} </span>

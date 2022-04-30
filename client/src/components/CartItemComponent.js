@@ -2,14 +2,22 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { FaRegTrashAlt } from 'react-icons/fa';
-import { removeFromCart } from '../store/actions/cartActions';
+import { removeFromCart, increaseItemAmount, decreaseItemAmount } from '../store/actions/cartActions';
 
 const CartItemComponent = (props) => {
-    const { _id, image, title, price } = props;
+    const { _id, image, title, price, quantity, amount } = props;
 
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const handleIncreaseItem = () => {
+        dispatch(increaseItemAmount(_id));
+    };
+
+    const handleDecreaseItem = () => {
+        dispatch(decreaseItemAmount(_id));
+    };
 
     const handleRemoveItem = () => {
         dispatch(removeFromCart(_id));
@@ -26,15 +34,24 @@ const CartItemComponent = (props) => {
                     <img className='img-fluid pointer' src={image} alt='product-image' />
                 </div>
                 <div className='col'>
-                    <div className='row text-muted'>{title}</div>
+                    <div className='row'>{title}</div>
                 </div>
                 <div className='col'>
                     {' '}
-                    <a href='#'>-</a>
-                    <a href='#' className='border'>
-                        1
-                    </a>
-                    <a href='#'>+</a>{' '}
+                    {amount > 1 && (
+                        <a className='pointer' onClick={handleDecreaseItem}>
+                            -
+                        </a>
+                    )}
+                    <a className='border'>{amount}</a>
+                    {amount < quantity && (
+                        <a className='pointer' onClick={handleIncreaseItem}>
+                            +
+                        </a>
+                    )}{' '}
+                    <div>
+                        <small className='text-muted'>{`${quantity} ${t('available')}`}</small>
+                    </div>
                 </div>
                 <div className='col d-flex justify-content-between align-items-center'>
                     {`${t('price-symbol')}${price}`}

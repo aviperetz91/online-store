@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { HiOutlineArrowNarrowRight, HiOutlineArrowNarrowLeft } from 'react-icons/hi';
 import { PATHS, SIZES } from '../config/consts';
 import CartItemComponent from '../components/CartItemComponent';
@@ -13,7 +12,12 @@ const ShoppingCartScreen = () => {
     const lang = i18n.language;
 
     let totalPrice = 0;
-    cartItems.forEach((item) => (totalPrice += item.price));
+    let totalItems = 0;
+
+    cartItems.forEach((item) => {
+        totalItems += item.amount;
+        totalPrice += item.price * item.amount;
+    });
 
     const renderCartItems = () => {
         return (
@@ -37,14 +41,16 @@ const ShoppingCartScreen = () => {
                                     title={item.title}
                                     image={item.image}
                                     price={item.price}
+                                    quantity={item.quantity}
+                                    amount={item.amount}
                                 />
                             ))}
                             <div className='back-to-shop d-none d-md-block'>
                                 <Link to={PATHS.SHOP_SCREEN_PATH} className='btn my-0'>
                                     {lang === 'he' ? (
-                                        <HiOutlineArrowNarrowRight size={SIZES.ARROW_BACK_SIZE} color='black' />
+                                        <HiOutlineArrowNarrowRight className='text-dark' size={SIZES.ARROW_BACK_SIZE} />
                                     ) : (
-                                        <HiOutlineArrowNarrowLeft size={SIZES.ARROW_BACK_SIZE} color='black' />
+                                        <HiOutlineArrowNarrowLeft className='text-dark' size={SIZES.ARROW_BACK_SIZE} />
                                     )}
                                 </Link>
                                 <span className='text-muted'>{t('back-to-shop')} </span>
@@ -60,8 +66,16 @@ const ShoppingCartScreen = () => {
                                 </li>
                                 <li className='list-group-item py-3'>
                                     <div className='row'>
+                                        <div className='col'>{`${t('total-items')}: `}</div>
+                                        <div className='col'>{totalItems}</div>
+                                    </div>
+                                </li>
+                                <li className='list-group-item py-3'>
+                                    <div className='row'>
                                         <div className='col'>{`${t('total-price')}: `}</div>
-                                        <div className='col fw-bold'>{`${t('price-symbol')}${totalPrice}`}</div>
+                                        <div className='col fw-bold'>
+                                            {`${t('price-symbol')}${totalPrice.toFixed(2)}`}
+                                        </div>
                                     </div>
                                 </li>
                                 <li className='list-group-item py-3 d-flex justify-content-center'>
@@ -73,9 +87,9 @@ const ShoppingCartScreen = () => {
                             <div className='back-to-shop d-block d-md-none'>
                                 <Link to={PATHS.SHOP_SCREEN_PATH} className='btn'>
                                     {lang === 'he' ? (
-                                        <HiOutlineArrowNarrowRight size={SIZES.ARROW_BACK_SIZE} color='black' />
+                                        <HiOutlineArrowNarrowRight className='text-dark' size={SIZES.ARROW_BACK_SIZE} />
                                     ) : (
-                                        <HiOutlineArrowNarrowLeft size={SIZES.ARROW_BACK_SIZE} color='black' />
+                                        <HiOutlineArrowNarrowLeft className='text-dark' size={SIZES.ARROW_BACK_SIZE} />
                                     )}
                                 </Link>
                                 <span className='text-muted'>{t('back-to-shop')} </span>
@@ -93,9 +107,9 @@ const ShoppingCartScreen = () => {
                 <div className='back-to-shop mt-4'>
                     <Link to={PATHS.SHOP_SCREEN_PATH} className='btn'>
                         {lang === 'he' ? (
-                            <HiOutlineArrowNarrowRight size={SIZES.ARROW_BACK_SIZE} color='black' />
+                            <HiOutlineArrowNarrowRight className='text-dark' size={SIZES.ARROW_BACK_SIZE} />
                         ) : (
-                            <HiOutlineArrowNarrowLeft size={SIZES.ARROW_BACK_SIZE} color='black' />
+                            <HiOutlineArrowNarrowLeft className='text-dark' size={SIZES.ARROW_BACK_SIZE} />
                         )}
                     </Link>
                     <span className='text-muted'>{t('back-to-shop')} </span>
