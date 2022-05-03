@@ -31,7 +31,7 @@ const CartItemComponent = (props) => {
         <div className='row border-top border-bottom'>
             <div className='row main align-items-center'>
                 <div className='col-2' onClick={navigateToProductPage}>
-                    <img className='img-fluid pointer' src={image} alt='product-image' />
+                    <img className='img-fluid pointer' src={image} alt='product-img' />
                 </div>
                 <div className='col'>
                     <div className='row'>{title}</div>

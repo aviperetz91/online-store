@@ -1,47 +1,32 @@
-import { useTranslation } from 'react-i18next';
-import closeIcon from '../assets/img/close-icon.svg';
-import Rating from '@mui/material/Rating';
+import { Modal } from 'react-bootstrap';
 
 const ModalComponent = (props) => {
-    const { t } = useTranslation();
-    const { _id, title, summary, description, image, btnText, price, rating } = props;
+    const { classes, handleClose, isStatic, children, show, title, body, btnPrimaryText, btnSecondaryText } = props;
 
     return (
-        <div className='portfolio-modal modal fade' id={_id} tabIndex='-1' role='dialog' aria-hidden='true'>
-            <div className='modal-dialog'>
-                <div className='modal-content'>
-                    <div className='close-modal' data-bs-dismiss='modal'>
-                        <img src={closeIcon} alt='Close modal' />
+        <Modal
+            className={classes ? classes : ''}
+            show={show}
+            onHide={handleClose}
+            backdrop={isStatic ? 'static' : ''}
+            keyboard={!isStatic}
+        >
+            {children ? (
+                children
+            ) : (
+                <>
+                    <div className='modal-header'>
+                        <h5 className='modal-title'>{title}</h5>
+                        <button className='btn-close m-0' onClick={handleClose}></button>
                     </div>
-                    <div className='container'>
-                        <div className='row justify-content-center'>
-                            <div className='col-lg-8'>
-                                <div className='modal-body'>
-                                    <h2 className='text-uppercase mb-5'>{title}</h2>
-                                    {summary && <p className='item-intro text-muted'>{summary}</p>}
-                                    <img className='img-fluid d-block mx-auto' src={image} alt='...' />
-                                    <p>{description}</p>
-                                    {rating && (
-                                        <div className='mb-4'>
-                                            <Rating name='rating' value={rating} readOnly size='large' />
-                                        </div>
-                                    )}
-                                    {price && <p className='fw-bold fs-3'>{`${t('price-symbol')}${price}`}</p>}
-                                    <button
-                                        className='btn btn-primary btn-xl text-uppercase'
-                                        data-bs-dismiss='modal'
-                                        type='button'
-                                    >
-                                        <i className='fas fa-times me-1'></i>
-                                        {btnText}
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                    <div className='modal-body'>{body}</div>
+                    <div className='modal-footer'>
+                        {btnSecondaryText && <button className='btn btn-secondary'>{btnSecondaryText}</button>}
+                        <button className='btn btn-primary'>{btnPrimaryText}</button>
                     </div>
-                </div>
-            </div>
-        </div>
+                </>
+            )}
+        </Modal>
     );
 };
 

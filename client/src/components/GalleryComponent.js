@@ -9,7 +9,6 @@ const GalleryComponent = () => {
         return galleryItems.map((item) => (
             <GalleryItemComponent
                 key={item._id}
-                _id={item._id}
                 title={item.title}
                 summary={item.summary}
                 description={item.description}
