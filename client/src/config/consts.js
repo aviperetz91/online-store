@@ -29,3 +29,7 @@ export const DEFAULT_RADIO = {
 export const SIZES = {
     ARROW_BACK_SIZE: 35,
 };
+
+export const PAGINATION = {
+    PAGE_SIZE: 4,
+};
