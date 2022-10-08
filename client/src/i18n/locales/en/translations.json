@@ -69,5 +69,8 @@
     "total-price": "Total Price",
     "move-to-checkout": "Checkout",
     "cart-empty": "Currently your cart is empty",
-    "available": "available"
+    "available": "available",
+    "product-added": "You have added the product to the cart",
+    "go-to-cart": "Go To Cart",
+    "continue-shopping": "Continue Shopping"
 }

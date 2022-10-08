@@ -1,18 +1,21 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { getProducts, getCategories } from '../store/actions/productActions';
-import { PRODUCT_PARAMS, DEFAULT_RADIO } from '../config/consts';
+import { PRODUCT_PARAMS, DEFAULT_RADIO, PATHS } from '../config/consts';
 import prices from '../mock/pricesMock';
 import sortingOptions from '../mock/sortingOptionsMock';
 import SpinnerComponent from '../components/SpinnerComponent';
 import CardComponent from '../components/CardComponent';
 import SelectComponent from '../components/SelectComponent';
+import ModalComponent from '../components/ModalComponent';
 
 const ShopScreen = () => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
-    const { products, categories, loadingProducts } = useSelector((state) => state.product);
+    const navigate = useNavigate();
+    const { products, categories, loadingProducts, cartItems } = useSelector((state) => state.product);
     const [searchInput, setSearchInput] = useState('');
     const [searchResults, setSearchResults] = useState();
     const [selectedValues, setSelectedValues] = useState({
@@ -20,7 +23,7 @@ const ShopScreen = () => {
         selectedPriceId: undefined,
         selectedSortingOptionId: undefined,
     });
-
+    const [showAddedProductModal, setShowAddedProductModal] = useState(false);
     const { selectedCategoryId, selectedPriceId, selectedSortingOptionId } = selectedValues;
     const requriedData = products.length > 0 && categories.length > 0;
 
@@ -40,13 +43,17 @@ const ShopScreen = () => {
 
     const renderProducts = () => {
         if (searchInput !== '' && searchResults && searchResults.length > 0) {
-            return searchResults.map((product) => <CardComponent key={product._id} product={product} />);
+            return searchResults.map((product) => (
+                <CardComponent key={product._id} product={product} openModal={openAddedProductModal} />
+            ));
         } else if (searchInput !== '' && searchResults && searchResults.length === 0) {
             return <h4 className='mt-2'>{t('no-results')}</h4>;
         } else if (!requriedData && (selectedCategoryId || selectedPriceId || selectedSortingOptionId)) {
             return <h4 className='mt-2'>{t('no-results')}</h4>;
         } else {
-            return products.map((product) => <CardComponent key={product._id} product={product} />);
+            return products.map((product) => (
+                <CardComponent key={product._id} product={product} openModal={openAddedProductModal} />
+            ));
         }
     };
 
@@ -130,6 +137,19 @@ const ShopScreen = () => {
         });
     };
 
+    const openAddedProductModal = () => {
+        setShowAddedProductModal(true);
+    };
+
+    const closeAddedProductModal = () => {
+        setShowAddedProductModal(false);
+    };
+
+    const goToCart = () => {
+        closeAddedProductModal();
+        navigate(PATHS.CART_SCREEN_PATH);
+    };
+
     if (!requriedData && !selectedCategoryId && !selectedPriceId && !selectedSortingOptionId) {
         return <SpinnerComponent height={'82vh'} />;
     } else {
@@ -160,6 +180,16 @@ const ShopScreen = () => {
                         </div>
                     </div>
                 </div>
+                <ModalComponent
+                    show={showAddedProductModal}
+                    title={t('cart')}
+                    body={t('product-added')}
+                    btnPrimaryText={t('go-to-cart')}
+                    btnPrimaryHandler={goToCart}
+                    btnSecondaryText={t('continue-shopping')}
+                    btnSecondaryHandler={closeAddedProductModal}
+                    handleClose={closeAddedProductModal}
+                />
             </div>
         );
     }

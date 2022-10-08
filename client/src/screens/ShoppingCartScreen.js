@@ -29,9 +29,15 @@ const ShoppingCartScreen = () => {
     const { i18n, t } = useTranslation();
     const { cartItems } = useSelector((state) => state.cart);
     const [activePage, setActivePage] = useState(1);
-    const pagesNumber = Math.round(cartItems.length / PAGINATION.PAGE_SIZE);
-    const itemsToPages = mapItemsToPages(cartItems, pagesNumber);
     const lang = i18n.language;
+
+    let pagesNumber = 0;
+    pagesNumber =
+        (cartItems.length / PAGINATION.PAGE_SIZE) % 2 == 0
+            ? cartItems.length / PAGINATION.PAGE_SIZE
+            : cartItems.length / PAGINATION.PAGE_SIZE + 1;
+
+    const itemsToPages = mapItemsToPages(cartItems, pagesNumber);
 
     let totalPrice = 0;
     let totalItems = 0;

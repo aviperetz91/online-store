@@ -69,5 +69,8 @@
     "total-price": "מחיר כולל",
     "move-to-checkout": "לרכישה",
     "cart-empty": "העגלה שלך ריקה",
-    "available": "במלאי"
+    "available": "במלאי",
+    "product-added": "הוספת את המוצר לעגלה",
+    "go-to-cart": "עבור לעגלה",
+    "continue-shopping": "המשך לקנות"
 }

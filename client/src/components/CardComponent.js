@@ -6,15 +6,16 @@ import { addToCart } from '../store/actions/cartActions';
 import Rating from '@mui/material/Rating';
 import '../styles/cardStyle.scss';
 
-const CardComponent = ({ product }) => {
+const CardComponent = (props) => {
+    const { product, openModal } = props;
     const { _id, image, title, price, rating } = product;
-
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleAddToCart = (e) => {
         e.stopPropagation();
+        openModal(true);
         dispatch(addToCart(_id));
     };
 
