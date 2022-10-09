@@ -10,7 +10,8 @@
     "insertUsers": "node server/scripts/insertUsers",
     "insertCategories": "node server/scripts/insertCategories",
     "insertProducts": "node server/scripts/insertProducts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "Avi Peretz",
   "license": "ISC",
@@ -19,7 +20,8 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "mongoose": "^6.0.12"
+    "mongoose": "^6.0.12",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

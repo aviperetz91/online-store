@@ -1,3 +1,6 @@
+# production
+/client/build
+
 # Logs
 logs
 *.log
