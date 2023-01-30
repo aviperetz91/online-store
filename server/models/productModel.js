@@ -13,9 +13,10 @@ const productSchema = new Schema(
             type: String,
             required: true,
         },
-        image: {
+        thumbnail: {
             type: String,
         },
+        images: [String],
         description: {
             type: String,
         },
@@ -38,6 +39,9 @@ const productSchema = new Schema(
         sold: {
             type: Number,
             default: 0,
+        },
+        brand: {
+            type: String,
         },
     },
     { timestamps: true }

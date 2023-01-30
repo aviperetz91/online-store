@@ -7,7 +7,7 @@ await DBConnection();
 const insertCategories = async () => {
     try {
         await Category.deleteMany();
-        const categoryRes = await axios.get('https://fakestoreapi.com/products/categories');
+        const categoryRes = await axios.get('https://dummyjson.com/products/categories');
         const categories = categoryRes.data;
         const categoriesToDB = [];
         for (const category of categories) {

@@ -1,41 +1,43 @@
-import mongoose from 'mongoose';
 import DBConnection from '../config/database.js';
 import axios from 'axios';
 import Product from '../models/productModel.js';
+import Category from '../models/categoryModel.js';
 
 await DBConnection();
 
-const setCategoryObjectId = (category) => {
-    let objectId;
-    if (category === `electronics`) {
-        objectId = mongoose.Types.ObjectId('61956776b27265e5c6f91a48');
-    } else if (category === `jewelery`) {
-        objectId = mongoose.Types.ObjectId('61956776b27265e5c6f91a49');
-    } else if (category === `men's clothing`) {
-        objectId = mongoose.Types.ObjectId('61956776b27265e5c6f91a4a');
-    } else if (category === `women's clothing`) {
-        objectId = mongoose.Types.ObjectId('61956776b27265e5c6f91a4b');
+export const getCategoryMap = async () => {
+    try {
+        const categoryMap = {};
+        const categories = await Category.find({});
+        for (const category of categories) {
+            categoryMap[category.title] = category._id;
+        }
+        return categoryMap;
+    } catch (err) {
+        console.log(err);
     }
-    return objectId;
 };
 
 const insertProducts = async () => {
     try {
         await Product.deleteMany();
-        const productsRes = await axios.get('https://fakestoreapi.com/products');
-        const products = productsRes.data;
+        const categoryMap = await getCategoryMap();
+        const productsRes = await axios.get('https://dummyjson.com/products?limit=100');
+        const products = productsRes.data.products;
         const productsToDB = [];
         for (const product of products) {
             const newProduct = {
-                category: setCategoryObjectId(product.category),
+                category: categoryMap[product.category],
+                brand: product.brand,
                 title: product.title,
-                image: product.image,
+                thumbnail: product.thumbnail,
+                images: product.images,
                 description: product.description,
                 price: product.price,
                 reviews: [],
-                rating: Math.floor(Math.random() * 5) + 1,
-                quantity: Math.floor(Math.random() * 100) + 1,
-                sold: Math.floor(Math.random() * 50) + 1,
+                rating: product.rating,
+                quantity: product.stock,
+                sold: Math.floor(Math.random() * product.stock) + 1,
             };
             productsToDB.push(newProduct);
         }
