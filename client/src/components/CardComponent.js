@@ -8,7 +8,7 @@ import '../styles/cardStyle.scss';
 
 const CardComponent = (props) => {
     const { product, openModal } = props;
-    const { _id, image, title, price, rating } = product;
+    const { _id, images, title, price, rating } = product;
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -28,7 +28,7 @@ const CardComponent = (props) => {
             <div className='col-6 col-md-5 col-lg-4 col-xl-3 mb-4 product-card'>
                 <div onClick={navigateToProductPage} className='card h-100'>
                     <div className='card-image product-img'>
-                        <img src={image} alt='product' />
+                        <img src={images[0]} alt='product' />
                     </div>
                     <div className='card-body p-0'>
                         <div className='card-heading'>{title}</div>
